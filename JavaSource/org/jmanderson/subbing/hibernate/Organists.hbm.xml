@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+                            "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                            "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<!-- DO NOT EDIT: This is a generated file that is synchronized -->
+<!-- by MyEclipse Hibernate tool integration.                   -->
+<!-- Created Fri Sep 09 17:41:27 EDT 2005                         -->
+<hibernate-mapping package="org.jmanderson.subbing.hibernate">
+
+    <class name="Organists" table="organists" batch-size="10">
+    	<cache usage="read-write"/>
+    	
+        <id name="username" column="username" type="java.lang.String">
+            <generator class="assigned"/>
+        </id>
+ 
+        <property name="nickname" column="nickname" type="java.lang.String"  not-null="true" />
+        <property name="fullname" column="fullname" type="java.lang.String" />
+        <property name="details" column="details" type="java.lang.String" />
+        <property name="availsat" column="availsat" type="java.lang.Boolean" />
+        <property name="availsun" column="availsun" type="java.lang.Boolean" />
+        <property name="travel" column="travel" type="java.lang.String" />
+        <property name="wedfun" column="wedfun" type="java.lang.String" />
+        <property name="available" column="available" type="java.lang.Boolean" />
+        <property name="showincal" column="showincal" type="java.lang.Boolean" />
+ 
+        <set name="emailSet" inverse="true" batch-size="5">
+            <key column="username"/>
+            <one-to-many class="Email"/>
+        </set>
+ 
+        <set name="phoneSet" inverse="true" batch-size="5">
+            <key column="username"/>
+            <one-to-many class="Phone"/>
+        </set>
+ 
+        <set name="schedulesSet" inverse="true">
+            <key column="username"/>
+            <one-to-many class="Schedules"/>
+        </set>
+    </class>
+    
+</hibernate-mapping>

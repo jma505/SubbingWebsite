@@ -1,0 +1,104 @@
+<project name="subbing" basedir="/Users/johnmanderson/Workspaces/MyEclipse 9/subbing" default="war">
+
+    <property name="webroot.dir" value="${basedir}"/>
+    <property name="webinf.dir" value="${webroot.dir}/WEB-INF"/>
+    <property name="build.dir" value="build"/>
+	<property name="deploy.dir" value="/Users/johnmanderson/Desktop/Copy to AmazonEC2"/>
+
+    <!-- Project settings -->
+    <property name="project.distname" value="subbing"/>
+
+    <!-- classpath for Struts 1.1 -->
+    <path id="compile.classpath">
+        <pathelement path ="${webinf.dir}/lib/commons-beanutils.jar"/>
+    	<pathelement path ="${webinf.dir}/lib/commons-collections.jar"/>
+        <pathelement path ="${webinf.dir}/lib/commons-digester.jar"/>
+    	<pathelement path ="${webinf.dir}/lib/commons-fileupload.jar"/>
+    	<pathelement path ="${webinf.dir}/lib/commons-lang.jar"/>
+    	<pathelement path ="${webinf.dir}/lib/commons-logging.jar"/>
+    	<pathelement path ="${webinf.dir}/lib/commons-validator.jar"/>
+        <pathelement path ="${webinf.dir}/lib/struts.jar"/>
+    	<pathelement path ="${webinf.dir}/lib/struts-legacy.jar"/>
+        <pathelement path ="${webinf.dir}/lib/jakarta-oro.jar"/>
+    	<pathelement path ="/usr/local/tomcat5/common/lib/servlet-api.jar"/>
+    	<pathelement path ="${webinf.dir}/lib/hibernate3.jar"/>
+    	<pathelement path ="${webinf.dir}/classes"/>
+        <pathelement path ="${classpath}"/>
+    </path>
+
+    <!-- Check timestamp on files -->
+    <target name="prepare">
+        <tstamp/>
+    </target>
+
+    <!-- Copy any resource or configuration files -->
+	<target name="resources">
+        <copy todir="${webinf.dir}/classes" includeEmptyDirs="no">
+            <fileset dir="JavaSource">
+            <patternset>
+                <include name="**/*.conf"/>
+                <include name="**/*.properties"/>
+                <include name="**/*.xml"/>
+            </patternset>
+            </fileset>
+        </copy>
+    </target>
+    
+    <!-- Normal build of application -->
+	<target name="compile" depends="prepare,resources">
+        <javac debug="true" srcdir="JavaSource" destdir="${webinf.dir}/classes">
+            <classpath refid="compile.classpath"/>
+        </javac>
+    </target>
+
+    <!-- Remove classes directory for clean build -->
+    <target name="clean"
+      description="Prepare for clean build">
+      <delete>
+      	<fileset dir="${webinf.dir}/lib">
+      		<include name="subbing*.jar"/>
+      	</fileset>
+      </delete>
+      <delete dir="${webinf.dir}/classes"/>
+      <mkdir  dir="${webinf.dir}/classes"/>
+    </target>
+
+    <!-- Build entire project -->
+    <target name="build" depends="prepare,compile"/>
+    <target name="rebuild" depends="clean,prepare,compile"/>
+
+	<!-- Create jarfile -->
+	<target name="jarfile" depends="rebuild">
+	  <jar destfile="${webinf.dir}/lib/subbing-${DSTAMP}${TSTAMP}.jar" basedir="${webinf.dir}/classes"/>
+	</target>
+	
+    <!-- Create binary distribution -->
+    <target name="war" depends="jarfile">
+      <mkdir dir="${build.dir}"/>
+      <war
+        basedir="${webroot.dir}"
+        warfile="${build.dir}/subbing.war"
+        webxml="${webinf.dir}/web.xml">
+      	<exclude name="JavaSource/**"/>
+        <exclude name="${build.dir}/**"/>
+      	<exclude name="Model Folder/**"/>
+      	<exclude name="ant/**"/>
+        <exclude name="WEB-INF/src/**"/>
+        <exclude name="WEB-INF/classes/**"/>
+        <exclude name="WEB-INF/web.xml"/>
+      	<exclude name=".classpath"/>
+      	<exclude name="build.xml"/>
+    	<exclude name=".project"/>
+		<exclude name="svn*"/>
+      	<exclude name=".*/**"/>
+       </war>
+
+    </target>
+
+    <target name="deploy" depends="war">
+       <!--delete file="${deploy.dir}/${project.distname}.war"/>
+       <delete dir="${deploy.dir}/${project.distname}"/>-->
+       <copy file="${build.dir}/${project.distname}.war" todir="${deploy.dir}"/>
+    </target>
+
+</project>

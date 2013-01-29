@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+                               "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+ <data-sources>
+  <!--<data-source type="org.apache.commons.dbcp.BasicDataSource" key="subbingDB">
+   <set-property property="driverClassName" value="org.postgresql.Driver"/>
+   <set-property property="username" value="subbing"/>
+   <set-property property="password" value="calendar"/>
+   <set-property property="url" value="jdbc:postgresql://127.0.0.1/subbing"/>
+  </data-source>-->
+ </data-sources>
+ <form-beans>
+  <form-bean name="loginForm" type="org.apache.struts.action.DynaActionForm">
+   <form-property name="username" type="java.lang.String"/>
+   <form-property name="password" type="java.lang.String"/>
+  </form-bean>
+  <form-bean name="organistForm" type="org.jmanderson.subbing.forms.OrganistForm"/>
+  <form-bean name="locationForm" type="org.jmanderson.subbing.forms.LocationForm"/>
+  <form-bean name="dateForm" type="org.jmanderson.subbing.forms.DateForm"/>
+  <form-bean name="phoneForm" type="org.jmanderson.subbing.forms.PhoneForm"/>
+  <form-bean name="emailForm" type="org.jmanderson.subbing.forms.EmailForm"/>
+  <form-bean name="passwordForm" type="org.jmanderson.subbing.forms.PasswordForm"/>
+  <form-bean name="userForm" type="org.jmanderson.subbing.forms.UserForm"/>
+ </form-beans>
+ <global-exceptions>
+  <exception key="app.exception.message" path="/pages/error.jsp" type="org.jmanderson.subbing.AppException"/>
+  <exception key="app.exception.message" path="/pages/error.jsp" type="org.jmanderson.subbing.SubbingException"/>
+  <exception key="app.exception.message" path="/pages/error.jsp" type="org.jmanderson.subbing.common.AppException"/>
+ </global-exceptions>
+ <global-forwards>
+  <forward name="home" path="/displayHome.do"/>
+  <forward name="login" path="/pages/login.jsp"/>
+  <forward name="logout" path="/logMeOut.do"/>
+  <forward name="organist_info" path="/organistInfo.do"/>
+ </global-forwards>
+ <action-mappings>
+  <action path="/fees" forward="/pages/oops.html"/>
+  <action path="/checklist" forward="/pages/oops.html"/>
+  <action parameter="/pages/changepassword.jsp" path="/changePassword" type="org.apache.struts.actions.ForwardAction"/>
+  <action input="/pages/login.jsp" name="loginForm" path="/processLogin"
+   scope="request" type="org.jmanderson.subbing.actions.LoginAction" validate="true">
+   <forward name="success" path="/displayHome.do"/>
+  </action>
+  <action path="/displayHome" type="org.jmanderson.subbing.actions.DisplayHomeAction">
+   <forward name="success" path="/pages/basepage.jsp"/>
+   <!-- <forward name="loggedIn" path="/showMySchedule.do"/> -->
+  </action>
+  <action path="/showMySchedule" type="org.jmanderson.subbing.actions.ShowMyScheduleAction">
+   <forward name="success" path="/pages/basepage.jsp"/>
+   <forward contextRelative="true" name="success2" path="/pages/basepage.jsp"/>
+  </action>
+  <action path="/logMeOut" type="org.jmanderson.subbing.actions.LogMeOutAction">
+   <forward name="success" path="/displayHome.do"/>
+  </action>
+  <action path="/organistInfo" forward="/pages/oops.html"/>
+  <action path="/organistInfoWF" forward="/pages/oops.html"/>
+  <action input="add.date" path="/editDate" type="org.jmanderson.subbing.actions.EditDateAction">
+   <forward name="success" path="/showMySchedule.do"/>
+  </action>
+  <action name="organistForm" path="/getMyInfo" scope="request"
+   type="org.jmanderson.subbing.actions.GetMyInfoAction" validate="false">
+   <forward name="success" path="/pages/oops.html"/>
+  </action>
+  <action name="locationForm" path="/getAllLocations" scope="request"
+   type="org.jmanderson.subbing.actions.GetAllLocationsAction" validate="false">
+   <forward name="success" path="/pages/oops.html"/>
+  </action>
+  <action name="locationForm" path="/addLocation" scope="request"
+   type="org.jmanderson.subbing.actions.AddLocationAction" validate="false">
+   <forward name="success" path="/getAllLocations.do"/>
+   <forward name="errors" path="/getAllLocations.do"/>
+  </action>
+  <action name="locationForm" path="/editLocation" scope="request"
+   type="org.jmanderson.subbing.actions.EditLocationAction" validate="false">
+   <forward name="success" path="/pages/oops.html"/>
+   <forward name="errors" path="/pages/oops.html"/>
+  </action>
+  <action name="dateForm" path="/prepareAddDate" scope="request"
+   type="org.jmanderson.subbing.actions.PrepareAddDateAction" validate="false">
+   <forward contextRelative="true" name="success" path="/pages/oops.html"/>
+  </action>
+  <action input="add.date" name="dateForm" path="/addDate"
+   scope="request" type="org.jmanderson.subbing.actions.AddDateAction" validate="false">
+    <forward contextRelative="true" name="errors" path="/pages/oops.html"/>
+  </action>
+  <action path="/deleteDate" type="org.jmanderson.subbing.actions.DeleteDateAction">
+   <forward name="success" path="/showMySchedule.do"/>
+  </action>
+  <action name="organistForm" path="/updateMyInfo" scope="request"
+   type="org.jmanderson.subbing.actions.UpdateMyInfoAction" validate="true">
+   <forward name="success" path="/getMyInfo.do"/>
+  </action>
+  <action input="/pages/changepassword.jsp" name="passwordForm"
+   path="/changeMyPassword" scope="request"
+   type="org.jmanderson.subbing.actions.ChangeMyPasswordAction" validate="true"/>
+  <action name="phoneForm" path="/getAllPhones" scope="request"
+   type="org.jmanderson.subbing.actions.GetAllPhonesAction" validate="false">
+   <forward name="success" path="/pages/oops.html"/>
+  </action>
+  <action name="userForm" path="/getAllUsers" scope="request"
+   type="org.jmanderson.subbing.actions.GetAllUsersAction" validate="false">
+   <forward name="success" path="/pages/oops.html"/>
+  </action>
+  <action path="/resetPassword" type="org.jmanderson.subbing.actions.ResetPasswordAction">
+   <forward name="success" path="/getAllUsers.do"/>
+  </action>
+  <action name="userForm" path="/addUser" scope="request"
+   type="org.jmanderson.subbing.actions.AddUserAction" validate="false">
+   <forward name="success" path="/getAllUsers.do"/>
+   <forward name="errors" path="/getAllUsers.do"/>
+  </action>
+  <action path="/deleteUser" type="org.jmanderson.subbing.actions.DeleteUserAction">
+   <forward name="success" path="/getAllUsers.do"/>
+  </action>
+  <action name="phoneForm" path="/addPhone" scope="request"
+   type="org.jmanderson.subbing.actions.AddPhoneAction" validate="false">
+   <forward name="success" path="/getAllPhones.do"/>
+   <forward name="errors" path="/getAllPhones.do"/>
+  </action>
+  <action path="/deletePhone" type="org.jmanderson.subbing.actions.DeletePhoneAction">
+   <forward name="success" path="/getAllPhones.do"/>
+  </action>
+  <action name="emailForm" path="/getAllEmails" scope="request"
+   type="org.jmanderson.subbing.actions.GetAllEmailsAction" validate="false">
+   <forward name="success" path="/pages/oops.html"/>
+  </action>
+  <action name="emailForm" path="/addEmail" scope="request"
+   type="org.jmanderson.subbing.actions.AddEmailAction" validate="false">
+   <forward name="success" path="/getAllEmails.do"/>
+   <forward name="errors" path="/getAllEmails.do"/>
+  </action>
+  <action path="/deleteEmail" scope="request"
+   type="org.jmanderson.subbing.actions.DeleteEmailAction" validate="true">
+   <forward name="success" path="/getAllEmails.do"/>
+  </action>
+  <action path="/getLocationPieces" type="org.jmanderson.subbing.actions.GetLocationPiecesAction">
+   <forward name="success" path="/pages/oops.html"/>
+   <forward name="failure" path="/showMySchedule.do"/>
+  </action>
+  <action path="/getMyPieces" type="org.jmanderson.subbing.actions.GetMyPiecesAction">
+   <forward name="success" path="/pages/oops.html"/>
+  </action>
+ </action-mappings>
+ <controller/>
+ <message-resources parameter="org.jmanderson.subbing.ApplicationResources"/>
+ <!-- 
+ <plug-in className="org.apache.struts.tiles.TilesPlugin">
+  <set-property property="definitions-config" value="/WEB-INF/tiles-defs.xml"/>
+  <set-property property="moduleAware" value="true"/>
+ </plug-in>
+ -->
+ <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+  <set-property property="pathnames" value="/WEB-INF/validator-rules.xml, /WEB-INF/validation.xml"/>
+  <set-property property="stopOnFirstError" value="false"/>
+ </plug-in>
+</struts-config>

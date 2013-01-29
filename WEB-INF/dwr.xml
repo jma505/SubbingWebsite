@@ -1,0 +1,70 @@
+<!DOCTYPE dwr PUBLIC
+    "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN"
+    "http://directwebremoting/schema/dwr20.dtd">
+
+<dwr>
+  <allow>
+    <create creator="new" javascript="DataPreparer">
+      <param name="class" value="org.jmanderson.subbing.DataPreparer"/>
+      <include method="getOrganistAsXML"/>
+      <include method="getNicknames"/>
+      <include method="getOrganist"/>
+      <include method="getAvailabilityAsXML"/>
+      <include method="getMyXml"/>
+      <include method="getLocationsAsXML"/>
+      <include method="getOrganistScheduleAsXML"/>
+      <include method="getMyName"/>
+      <include method="getMyDetails"/>
+      <include method="getMyTravel"/>
+      <include method="getMyWedFun"/>
+      <include method="getMyAvailSat"/>
+      <include method="getMyAvailSun"/>
+      <include method="getMyShowInCal"/>
+      <include method="getMyIsActiveUser"/>
+      <include method="getLocationDisplay"/>
+      <include method="getLocationPiecesAsXml"/>
+      <include method="getLocationsForForm"/>
+      <include method="getScheduleLocationID"/>
+      <include method="getScheduleUnavailable"/>
+      <include method="getScheduleNotes"/>
+      <include method="getSchedulePieces"/>
+      <include method="getScheduleTime"/>
+      <include method="getScheduleTentative"/>
+      <include method="getScheduleID"/>
+      <include method="getAllUsersAsXML"/>
+      <include method="getHolidaysListDisplay"/>
+    </create>
+    <create creator="new" javascript="DataUpdater">
+      <param name="class" value="org.jmanderson.subbing.DataUpdater"/>
+      <include method="updatePassword2"/>
+      <include method="updateMyInfo2"/>
+      <include method="logMeIn"/>
+      <include method="logMeOut" />
+      <include method="deleteEmail" />
+      <include method="addOrUpdateEmail2" />
+      <include method="deletePhone" />
+      <include method="addOrUpdatePhone2" />
+      <include method="addOrUpdateLocation2" />
+      <include method="addOrUpdateSchedule" />
+      <include method="deleteSchedule" />
+      <include method="updateScheduleMultiple" />
+      <include method="deleteUser" />
+      <include method="addOrUpdateUser" />
+      <include method="resetUserPassword" />
+      <include method="setUserActive" />
+      <include method="setUserInactive" />
+      <include method="setUserLocked" />
+      <include method="addHolidays" />
+      <include method="setTentativeOff" />
+    </create>
+    <create creator="new" javascript="DateHelper">
+      <param name="class" value="org.jmanderson.subbing.DateHelper"/>
+      <include method="extractMonthFromDisplay"/>
+      <include method="extractYearFromDisplay"/>
+    </create>
+    <create creator="new" javascript="ValidateUser">
+      <param name="class" value="org.jmanderson.subbing.ValidateUser"/>
+      <include method="validate"/>
+    </create>
+  </allow>
+</dwr>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+                            "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                            "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<!-- DO NOT EDIT: This is a generated file that is synchronized -->
+<!-- by MyEclipse Hibernate tool integration.                   -->
+<!-- Created Fri Sep 09 17:46:38 EDT 2005                         -->
+<hibernate-mapping package="org.jmanderson.subbing.hibernate">
+
+    <class name="Schedules" table="schedules">
+        <id name="id" column="id" type="java.lang.Integer">
+            <generator class="sequence">
+            	<param name="sequence">schedules_id_seq</param>
+            </generator>
+        </id>
+ 
+        <property name="year" column="year" type="java.lang.Integer" />
+        <property name="month" column="month" type="java.lang.Integer" />
+        <property name="day" column="day" type="java.lang.Integer" />
+        <property name="tentative" column="tentative" type="java.lang.Boolean" />
+        <property name="notes" column="notes" type="java.lang.String" />
+        <property name="played" column="played" type="java.lang.String" />
+        <property name="holiday" column="holiday" type="java.lang.Boolean" />
+        <property name="unavailable" column="unavailable" type="java.lang.Boolean" />
+        <property name="service_time" column="service_time" type="java.lang.String" />
+ 
+        <many-to-one name="location" column="locationid" class="Location" />
+ 
+        <many-to-one name="organists" column="username" class="Organists"  not-null="true"/>
+    </class>
+    
+</hibernate-mapping>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+                            "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                            "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<!-- DO NOT EDIT: This is a generated file that is synchronized -->
+<!-- by MyEclipse Hibernate tool integration.                   -->
+<!-- Created Fri Sep 09 17:44:17 EDT 2005                         -->
+<hibernate-mapping package="org.jmanderson.subbing.hibernate">
+
+    <class name="Location" table="location">
+        <cache usage="read-write"/>
+        
+        <id name="id" column="id" type="java.lang.Integer">
+            <generator class="sequence">
+            	<param name="sequence">location_id_seq</param>
+            </generator>
+        </id>
+ 
+        <property name="name" column="name" type="java.lang.String"  not-null="true" />
+        <property name="address" column="address" type="java.lang.String" />
+        <property name="city" column="city" type="java.lang.String" />
+        <property name="state" column="state" type="java.lang.String" />
+        <property name="notes" column="notes" type="java.lang.String" />
+        <property name="zip" column="zip" type="java.lang.Integer" />
+ 
+        <set name="schedulesSet" inverse="true" lazy="true">
+            <key column="locationid"/>
+            <one-to-many class="Schedules"/>
+        </set>
+    </class>
+    
+</hibernate-mapping>

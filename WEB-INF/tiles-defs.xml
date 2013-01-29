@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
+                                   "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
+<tiles-definitions>
+ <definition name="base.page" path="/pages/basepage.jsp">
+  <put name="banner" type="page" value="/pages/banner.jsp"/>
+  <put name="menu" type="page" value="${menu}"/>
+  <put name="content" type="page" value="${content}"/>
+ </definition>
+</tiles-definitions>
