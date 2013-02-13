@@ -16,48 +16,48 @@
 </textarea>
 
 <script type="text/javascript">
-  function reloadMe() {
+  var reloadMe = function() {
 	  <%String myUsername = ((Users) request.getSession().getAttribute("user")).getUsername();%>
 	  DataPreparer.getMyXml("<%=myUsername%>", displayMe);
   }
-  function displayMe(xmlIn) {
+  var displayMe = function(xmlIn) {
 	  var xslt = xmlParse(dojo.byId('xslme').value);
 	  var xmlt = xmlParse(xmlIn);
 	  var html = xsltProcess(xmlt, xslt);
 	  dojo.byId('me').innerHTML = html;
   }
-  function reloadEmail() {
+  var reloadEmail = function() {
 	  DataPreparer.getMyXml("<%=myUsername%>", displayMyEmail);
   }
-  function displayMyEmail(xmlIn) {
+  var displayMyEmail = function(xmlIn) {
 	  var xslt = xmlParse(dojo.byId('xslmyemail').value);
 	  var xmlt = xmlParse(xmlIn);
 	  var html = xsltProcess(xmlt, xslt);
 	  dojo.byId('myemails').innerHTML = html;
   }
-  function reloadPhone() {
+  var reloadPhone = function() {
 	  DataPreparer.getMyXml("<%=myUsername%>", displayMyPhone);
   }
-  function displayMyPhone(xmlIn) {
+  var displayMyPhone = function(xmlIn) {
 	  var xslt = xmlParse(dojo.byId('xslmyphones').value);
 	  var xmlt = xmlParse(xmlIn);
 	  var html = xsltProcess(xmlt, xslt);
 	  dojo.byId('myphones').innerHTML = html;
   }
-  function deleteEmail(id) {
+  var deleteEmail = function(id) {
 	  DataUpdater.deleteEmail(id, reloadEmail);
   }
-  function moveEmailToRight(em, pr, id) {
+  var moveEmailToRight = function(em, pr, id) {
 	  dojo.byId('emailID').innerHTML = id;
 	  dojo.byId('emailAddress').value = em;
 	  dijit.byId('emailPreferred').set("value", pr);
   }
-  function clearEmailAddUpdate() {
+  var clearEmailAddUpdate = function() {
 	  dojo.byId('emailID').innerHTML = "";
 	  dojo.byId('emailAddress').value = "";
 	  dijit.byId('emailPreferred').set("value", false);
   }
-  function addUpdateEmail() {
+  var addUpdateEmail = function() {
 	  var emId = dojo.byId('emailID').innerHTML;
 	  if (emId == "") {
 		  emId = 0;
@@ -70,24 +70,24 @@
 	  DataUpdater.addOrUpdateEmail2("<%=myUsername%>", emId, emAddr, emPref, reloadEmail);
 	  clearEmailAddUpdate();
   }
-  function deletePhone(id) {
+  var deletePhone = function(id) {
 	  DataUpdater.deletePhone(id, reloadPhone);
   }
-  function movePhoneToRight(ac, pp, pe, pt, id) {
+  var movePhoneToRight = function(ac, pp, pe, pt, id) {
 	  dojo.byId('phoneID').innerHTML = id;
 	  dojo.byId('phoneAC').value = ac;
 	  dojo.byId('phonePP').value = pp;
 	  dojo.byId('phonePE').value = pe;
 	  dojo.byId('phonePT').value = pt;
   }
-  function clearPhoneAddUpdate() {
+  var clearPhoneAddUpdate = function() {
 	  dojo.byId('phoneID').innerHTML = "";
 	  dojo.byId('phoneAC').value = "";
 	  dojo.byId('phonePP').value = "";
 	  dojo.byId('phonePE').value = "";
 	  dojo.byId('phonePT').value = "";
   }
-  function addUpdatePhone() {
+  var addUpdatePhone = function() {
 	  var phId = dojo.byId('phoneID').innerHTML;
 	  if (phId == "") {
 		  phId = 0;
@@ -352,7 +352,7 @@ To <b>DELETE</b> a Phone Number, click the <img src="images/delete_sm.png"/> on 
 	</table>
 </div>
 <script type="text/javascript">
-    function initBasicInfo() {
+    var initBasicInfo = function() {
 		var myUsername = "<%=myUsername%>";
 		var mfn, details, travel, wedfun, asat, asun, asic, aau;
 		DataPreparer.getMyName(myUsername, { async:false, callback:function(str) {mfn = str;}});
@@ -388,20 +388,20 @@ To <b>DELETE</b> a Phone Number, click the <img src="images/delete_sm.png"/> on 
 		}
 		dijit.byId("activeuser").set("checked", aaubool);
 	}
-	function showBasicInfo() {
+	var showBasicInfo = function() {
 		initBasicInfo();
 		dijit.byId("formBasicInfo").show();
 	}
-	function showEmail() {
+	var showEmail = function() {
 		dijit.byId("formChangeEmail").show();
 	}
-	function showPhone() {
+	var showPhone = function() {
 		dijit.byId("formChangePhone").show();
 	}
-	function showChangePwd() {
+	var showChangePwd = function() {
 	    dijit.byId("formChangePwd").show();
 	}
-	function validateNewPwd() {
+	var validateNewPwd = function() {
 	  var badpwd = "<font color=red><em>New Passwords do not Match</em></font>";
 	  var pass1 = dojo.byId("newpwd");
 	  var pass2 = dojo.byId("newpwd2");
@@ -409,7 +409,7 @@ To <b>DELETE</b> a Phone Number, click the <img src="images/delete_sm.png"/> on 
 	  if (pass1.value != pass2.value) { message.innerHTML = badpwd; }
 	  else { message.innerHTML = ""; }
 	}
-	function submitPassword() {
+	var submitPassword = function() {
 	<%String username = ((Users) request.getSession()
 					.getAttribute("user")).getUsername();%>
 	  var username = "<%=username%>";
@@ -421,7 +421,7 @@ To <b>DELETE</b> a Phone Number, click the <img src="images/delete_sm.png"/> on 
 	  dojo.byId("newpwd").value = "";
 	  dojo.byId("newpwd2").value = "";
 	}
-	function submitBasicInfo() {
+	var submitBasicInfo = function() {
 		<%username = ((Users) request.getSession().getAttribute("user"))
 					.getUsername();%>
 		var username = "<%=username%>";

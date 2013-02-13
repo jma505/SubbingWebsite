@@ -11,29 +11,29 @@
 </textarea>
 
 <script type="text/javascript">
-  function reloadUsers() {
+  var reloadUsers = function() {
 	  DataPreparer.getAllUsersAsXML(displayUsers);
 	}
-	function displayUsers(xmlIn) {
+	var displayUsers = function(xmlIn) {
 		var xslt = xmlParse(dojo.byId('xslusers').value);
 		var xmlt = xmlParse(xmlIn);
 		var html = xsltProcess(xmlt, xslt);
 		dojo.byId('allUsers').innerHTML = html;
 	}
-	function moveUserToRight(username, usershortname, userfullname, comments) {
+	var moveUserToRight = function(username, usershortname, userfullname, comments) {
 		dojo.byId('userName').value = username;
 		dojo.byId('userShortname').value = usershortname;
 		dojo.byId('userFullname').value = userfullname;
 		dojo.byId('userComments').value = comments;
 		dijit.byId("formChangeUser").show();
 	}
-	function clearUserForm() {
+	var clearUserForm = function() {
 		dojo.byId('userName').value = "";
 		dojo.byId('userShortname').value = "";
 		dojo.byId('userFullname').value = "";
 		dojo.byId('userComments').value = "";
 	}
-	function submitUser() {
+	var submitUser = function() {
 		var username = dojo.byId('userName').value;
 		var usershortname = dojo.byId('userShortname').value;
 		var userfullname = dojo.byId('userFullname').value;
@@ -46,19 +46,19 @@
 				});
 		clearUserForm();
 	}
-	function deleteUser(username) {
+	var deleteUser = function(username) {
 		DataUpdater.deleteUser(username, {async:false, callback:function() {reloadUsers();}});
 	}
-	function resetPassword(username) {
+	var resetPassword = function(username) {
 		DataUpdater.resetUserPassword(username);
 	}
-	function setActive(username) {
+	var setActive = function(username) {
 		DataUpdater.setUserActive(username, {async:false, callback:function() {reloadUsers();}});
 	}
-	function setInactive(username) {
+	var setInactive = function(username) {
 		DataUpdater.setUserInactive(username, {async:false, callback:function() {reloadUsers();}});
 	}
-	function setLocked(username) {
+	var setLocked = function(username) {
 		DataUpdater.setUserLocked(username, {async:false, callback:function() {reloadUsers();}});
 	}
 </script>

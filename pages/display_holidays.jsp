@@ -10,7 +10,7 @@
 			dojo.byId("allHolidays").innerHTML = str;
 		}});
 	}
-	function submitHoliday() {
+	var submitHoliday = function() {
 		var date1 = dijit.byId("date1").value;
 		var easter = new Date(date1);
 		var ashwednesday = dojo.date.add(easter, "day", -46);

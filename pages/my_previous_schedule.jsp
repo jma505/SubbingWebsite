@@ -16,17 +16,17 @@
 </textarea>
 
 <script type="text/javascript">
-  function reloadMyPreviousSchedule() {
+  var reloadMyPreviousSchedule = function() {
 	  <%String myUsername = ((Users) request.getSession().getAttribute("user")).getUsername();%>
 	  DataPreparer.getOrganistScheduleAsXML(true, "<%=myUsername%>", displayMyPreviousSchedule);
 	}
-	function displayMyPreviousSchedule(xmlIn) {
+	var displayMyPreviousSchedule = function(xmlIn) {
 		var xslt = xmlParse(dojo.byId('xslmyprevsched').value);
 		var xmlt = xmlParse(xmlIn);
 		var html = xsltProcess(xmlt, xslt);
 		dojo.byId('myPreviousSchedule').innerHTML = html;
 	}
-	function checkCalendar2() {
+	var checkCalendar2 = function() {
 		var showInCal;
 		var myUsername = "<%=myUsername%>";
 		DataPreparer.getMyShowInCal(myUsername, { async:false, callback:function(str) {
@@ -38,7 +38,7 @@
 			}
 		}});
 	}
-	function showLocationPieces2(locID) {
+	var showLocationPieces2 = function(locID) {
 		DataPreparer.getLocationDisplay(locID, {callback:function(str) { dojo.byId('piecesLocation2').innerHTML = str;}});
 		var myUsername = "<%=myUsername%>";
 		DataPreparer.getLocationPiecesAsXml(myUsername, locID, {callback:function(xmlIn) {
@@ -49,7 +49,7 @@
 		}});
 		dijit.byId("piecesPlayed2").show();
 	}
-	function showDateDialog2(month, day, holiday) {
+	var showDateDialog2 = function(month, day, holiday) {
 		var m, y, u, t, id;
 		dojo.byId("ddDay2").innerHTML = day;
 		dojo.byId("ddHoliday2").innerHTML = holiday;
@@ -105,7 +105,7 @@
 		}
 		dijit.byId("dateDialog2").show();
 	}
-	function submitDate2() {
+	var submitDate2 = function() {
 		var id = dojo.byId("ddID2").innerHTML;
 		var year = dojo.byId("ddY2").innerHTML;
 		var month = dojo.byId("ddM2").innerHTML;
@@ -123,7 +123,7 @@
 					reloadCalendar();
 				}});
 	}
-	function deleteSchedule2(id) {
+	var deleteSchedule2 = function(id) {
 		DataUpdater.deleteSchedule(id, {async:false, callback:function() {
 			reloadMyPreviousSchedule();
 			reloadCalendar();

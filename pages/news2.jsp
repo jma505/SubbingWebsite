@@ -1,4 +1,11 @@
 <p>
+<b>2/13/2013 - V2.0.1 released</b>
+<br />
+<ul>
+<li>Minor coding changes only (change the way that JavaScript functions are defined on the pages)</li>
+</ul>
+</p>
+<p>
 <b>12/28/2012 - Schedule Update Multiples changes</b>
 <br />
 <ul>

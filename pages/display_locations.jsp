@@ -9,18 +9,18 @@
 </textarea>
 
 <script type="text/javascript">
-  function reloadLocations() {
+    var reloadLocations = function() {
 	  <%String myUsername = ((Users) request.getSession().getAttribute(
 					"user")).getUsername();%>
 	  DataPreparer.getLocationsAsXML("<%=myUsername%>", displayLocations);
 	}
-	function displayLocations(xmlIn) {
+	var displayLocations = function(xmlIn) {
 		var xslt = xmlParse(dojo.byId('xslloc').value);
 		var xmlt = xmlParse(xmlIn);
 		var html = xsltProcess(xmlt, xslt);
 		dojo.byId('allLocations').innerHTML = html;
 	}
-	function moveLocationToRight(id, name, address, city, state, zip, notes,
+	var moveLocationToRight = function(id, name, address, city, state, zip, notes,
 			usernotes) {
 		dojo.byId('locID').innerHTML = id;
 		dojo.byId('locName').value = name;
@@ -32,7 +32,7 @@
 		dojo.byId('locUsernotes').value = usernotes;
 		dijit.byId("formChangeLocation").show();
 	}
-	function clearLocationForm() {
+	var clearLocationForm = function() {
 		dojo.byId('locID').innerHTML = "";
 		dojo.byId('locName').value = "";
 		dojo.byId('locAddress').value = "";
@@ -42,7 +42,7 @@
 		dojo.byId('locNotes').value = "";
 		dojo.byId('locUsernotes').value = "";
 	}
-	function submitLocation() {
+	var submitLocation = function() {
 		var id = dojo.byId('locID').innerHTML;
 		if (id == "") {
 			id = 0;

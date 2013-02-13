@@ -16,17 +16,17 @@
 </textarea>
 
 <script type="text/javascript">
-  function reloadMySchedule() {
+  var reloadMySchedule = function() {
 	  <%String myUsername = ((Users) request.getSession().getAttribute("user")).getUsername(); %>
 		DataPreparer.getOrganistScheduleAsXML(false, "<%=myUsername%>", displayMySchedule);
 	}
-	function displayMySchedule(xmlIn) {
+	var displayMySchedule = function(xmlIn) {
 		var xslt = xmlParse(dojo.byId('xslmysched').value);
 		var xmlt = xmlParse(xmlIn);
 		var html = xsltProcess(xmlt, xslt);
 		dojo.byId('myCurrentSchedule').innerHTML = html;
 	}
-	function checkCalendar() {
+	var checkCalendar = function() {
 		var showInCal;
 		var myUsername = "<%=myUsername%>";
 		DataPreparer.getMyShowInCal(myUsername, { async:false, callback:function(str) {
@@ -38,7 +38,7 @@
 			}
 		}});
 	}
-	function showLocationPieces(locID) {
+	var showLocationPieces = function(locID) {
 		DataPreparer.getLocationDisplay(locID, {callback:function(str) { dojo.byId('piecesLocation').innerHTML = str;}});
 		var myUsername = "<%=myUsername%>";
 		DataPreparer.getLocationPiecesAsXml(myUsername, locID, {callback:function(xmlIn) {
@@ -49,7 +49,7 @@
 		}});
 		dijit.byId("piecesPlayed").show();
 	}
-	function showDateDialog(month, day, holiday) {
+	var showDateDialog = function(month, day, holiday) {
 		var m, y, u, t, id;
 		dojo.byId("ddDay").innerHTML = day;
 		dojo.byId("ddHoliday").innerHTML = holiday;
@@ -105,7 +105,7 @@
 		}
 		dijit.byId("dateDialog").show();
 	}
-	function submitDate() {
+	var submitDate = function() {
 		var id = dojo.byId("ddID").innerHTML;
 		var year = dojo.byId("ddY").innerHTML;
 		var month = dojo.byId("ddM").innerHTML;
@@ -123,13 +123,13 @@
 					reloadCalendar();
 				}});
 	}
-	function deleteSchedule(id) {
+	var deleteSchedule = function(id) {
 		DataUpdater.deleteSchedule(id, {async:false, callback:function() {
 			reloadMySchedule();
 			reloadCalendar();
 		}});
 	}
-	function doBulkUpdate() {
+	var doBulkUpdate = function() {
 		var nl = dojo.query(".bulkSelect:checked");
 		if (nl.length > 0) {
 			var dates = "";
@@ -190,7 +190,7 @@
 			dijit.byId("dateDialogMultiple").show();
 		}
 	}
-	function submitDateMultiple() {
+	var submitDateMultiple = function() {
 		var dates = dojo.byId("ddDates").innerHTML;
 		var locID = dojo.byId("locationList3").value;
 		var notes = dojo.byId("ddNotes3").value;
@@ -203,7 +203,7 @@
 					reloadCalendar();
 				}});
 	}
-	function toggleTentativeOff(month, day, holiday) {
+	var toggleTentativeOff = function(month, day, holiday) {
 		var m, y;
 		DateHelper.extractMonthFromDisplay(month, {async:false, callback:function(str) {m=str;}});
 		DateHelper.extractYearFromDisplay(month, {async:false, callback:function(str) {y=str;}});
