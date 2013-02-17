@@ -1,4 +1,11 @@
 <p>
+<b>2/17/2013 - V2.0.2 released</b>
+<br />
+<ul>
+<li>Corrected the background color (not sure how the lavender snuck in)</li>
+</ul>
+</p>
+<p>
 <b>2/13/2013 - V2.0.1 released</b>
 <br />
 <ul>
