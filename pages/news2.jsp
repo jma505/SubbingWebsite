@@ -1,4 +1,11 @@
 <p>
+<b>2/24/2013 - V2.0.3 released</b>
+<br />
+<ul>
+<li>Added a &quot;favicon&quot; to the site (that little picture to the left of the URL in the browser's address bar)</li>
+</ul>
+</p>
+<p>
 <b>2/17/2013 - V2.0.2 released</b>
 <br />
 <ul>

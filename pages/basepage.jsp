@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
 <html>
 <head>
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
 
 <title>Pioneer Valley Substitute Organists</title>
 
@@ -108,7 +109,7 @@
       <div data-dojo-type="dijit.layout.ContentPane" title="[Terms of Use]" href="pages/help/termsofuse.jsp">
       <c:import url="help/termsofuse.jsp" />
       </div>
-      <div data-dojo-type="dijit.layout.ContentPane" href="pages/news2.jsp" title="[News (2/17/2013)]"
+      <div data-dojo-type="dijit.layout.ContentPane" href="pages/news2.jsp" title="[News (2/24/2013)]"
        style="overflow:auto">
     </div>
     <logic:match value="jma" name="user" property="username">
