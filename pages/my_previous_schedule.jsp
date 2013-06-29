@@ -21,61 +21,68 @@
 	  DataPreparer.getOrganistScheduleAsXML(true, "<%=myUsername%>", displayMyPreviousSchedule);
 	}
 	var displayMyPreviousSchedule = function(xmlIn) {
-		var xslt = xmlParse(dojo.byId('xslmyprevsched').value);
+		require(["dojo/dom"], function(dom) {
+		var xslt = xmlParse(dom.byId('xslmyprevsched').value);
 		var xmlt = xmlParse(xmlIn);
 		var html = xsltProcess(xmlt, xslt);
-		dojo.byId('myPreviousSchedule').innerHTML = html;
+		dom.byId('myPreviousSchedule').innerHTML = html;
+		});
 	}
 	var checkCalendar2 = function() {
+		require(["dojo/dom"], function(dom) {
 		var showInCal;
 		var myUsername = "<%=myUsername%>";
 		DataPreparer.getMyShowInCal(myUsername, { async:false, callback:function(str) {
 			if (str == "false") {
-				dojo.byId('warning2').innerHTML = "<center><font color='red' size='+1'><i>Your availability is not visible from the public &quot;Calendar&quot; tab.<br />To correct this, go to the &quot;[My Info]&quot; tab and check the &quot;Show in Calendar&quot; checkbox.</i></font></center>";
+				dom.byId('warning2').innerHTML = "<center><font color='red' size='+1'><i>Your availability is not visible from the public &quot;Calendar&quot; tab.<br />To correct this, go to the &quot;[My Info]&quot; tab and check the &quot;Show in Calendar&quot; checkbox.</i></font></center>";
 			}
 			else {
-				dojo.byId('warning2').innerHTML = " ";
+				dom.byId('warning2').innerHTML = " ";
 			}
 		}});
+		});
 	}
 	var showLocationPieces2 = function(locID) {
-		DataPreparer.getLocationDisplay(locID, {callback:function(str) { dojo.byId('piecesLocation2').innerHTML = str;}});
+		require(["dojo/dom"], function(dom) {
+		DataPreparer.getLocationDisplay(locID, {callback:function(str) { dom.byId('piecesLocation2').innerHTML = str;}});
 		var myUsername = "<%=myUsername%>";
 		DataPreparer.getLocationPiecesAsXml(myUsername, locID, {callback:function(xmlIn) {
-			var xslt = xmlParse(dojo.byId('xsllocpieces2').value);
+			var xslt = xmlParse(dom.byId('xsllocpieces2').value);
 			var xmlt = xmlParse(xmlIn);
 			var html = xsltProcess(xmlt, xslt);
-			dojo.byId('locationPieces2').innerHTML = html;
+			dom.byId('locationPieces2').innerHTML = html;
 		}});
 		dijit.byId("piecesPlayed2").show();
+		});
 	}
 	var showDateDialog2 = function(month, day, holiday) {
+		require(["dojo/dom"], function(dom) {
 		var m, y, u, t, id;
-		dojo.byId("ddDay2").innerHTML = day;
-		dojo.byId("ddHoliday2").innerHTML = holiday;
+		dom.byId("ddDay2").innerHTML = day;
+		dom.byId("ddHoliday2").innerHTML = holiday;
 		DateHelper.extractMonthFromDisplay(month, {async:false, callback:function(str) {m=str;}});
 		DateHelper.extractYearFromDisplay(month, {async:false, callback:function(str) {y=str;}});
-		dojo.byId("ddM2").innerHTML = m;
-		dojo.byId("ddY2").innerHTML = y;
+		dom.byId("ddM2").innerHTML = m;
+		dom.byId("ddY2").innerHTML = y;
 		var ddd = "<b>Schedule for " + day + " " + month + "</b><p/>";
-		dojo.byId("ddDate2").innerHTML = ddd;
+		dom.byId("ddDate2").innerHTML = ddd;
 		DataPreparer.getLocationsForForm("<%=myUsername%>", "locationList2", {async:false, callback:function(str) {
-			dojo.byId("ddLocations2").innerHTML = str;
+			dom.byId("ddLocations2").innerHTML = str;
 		}});
 		DataPreparer.getScheduleID(y, m, day, "<%=myUsername%>", holiday, {async:false, callback:function(str) {
 			id = str;
 		}});
-		dojo.byId("ddID2").innerHTML = id;
+		dom.byId("ddID2").innerHTML = id;
 		if (id == 0) {
 			dijit.byId("ddUnavailable2").set("checked",false);
 			dijit.byId("ddTentative2").set("checked", false);
-			dojo.byId("ddNotes2").value = "";
-			dojo.byId("ddPieces2").value = "";
-			dojo.byId("ddTime2").value = "";
+			dom.byId("ddNotes2").value = "";
+			dom.byId("ddPieces2").value = "";
+			dom.byId("ddTime2").value = "";
 		}
 		else {
 		DataPreparer.getScheduleLocationID(y, m, day, "<%=myUsername%>", holiday, {async:false, callback:function(str) {
-			dojo.byId("locationList2").value = str;
+			dom.byId("locationList2").value = str;
 		}});
 		DataPreparer.getScheduleUnavailable(y, m, day, "<%=myUsername%>", holiday, {async:false, callback:function(str) {
 			u = str;
@@ -94,27 +101,29 @@
 		}
 		dijit.byId("ddTentative2").set("checked", tbool);
 		DataPreparer.getScheduleNotes(y, m, day, "<%=myUsername%>", holiday, {async:false, callback:function(str) {
-			dojo.byId("ddNotes2").value = str;
+			dom.byId("ddNotes2").value = str;
 		}});
 		DataPreparer.getSchedulePieces(y, m, day, "<%=myUsername%>", holiday, {async:false, callback:function(str) {
-			dojo.byId("ddPieces2").value = str;
+			dom.byId("ddPieces2").value = str;
 		}});
 		DataPreparer.getScheduleTime(y, m, day, "<%=myUsername%>", holiday, {async:false, callback:function(str) {
-			dojo.byId("ddTime2").value = str;
+			dom.byId("ddTime2").value = str;
 		}});
 		}
 		dijit.byId("dateDialog2").show();
+		});
 	}
 	var submitDate2 = function() {
-		var id = dojo.byId("ddID2").innerHTML;
-		var year = dojo.byId("ddY2").innerHTML;
-		var month = dojo.byId("ddM2").innerHTML;
-		var day = dojo.byId("ddDay2").innerHTML;
-		var holiday = dojo.byId("ddHoliday2").innerHTML;
-		var locID = dojo.byId("locationList2").value;
-		var notes = dojo.byId("ddNotes2").value;
-		var pieces = dojo.byId("ddPieces2").value;
-		var time = dojo.byId("ddTime2").value;
+		require(["dojo/dom"], function(dom) {
+		var id = dom.byId("ddID2").innerHTML;
+		var year = dom.byId("ddY2").innerHTML;
+		var month = dom.byId("ddM2").innerHTML;
+		var day = dom.byId("ddDay2").innerHTML;
+		var holiday = dom.byId("ddHoliday2").innerHTML;
+		var locID = dom.byId("locationList2").value;
+		var notes = dom.byId("ddNotes2").value;
+		var pieces = dom.byId("ddPieces2").value;
+		var time = dom.byId("ddTime2").value;
 		var tentative = dijit.byId("ddTentative2").get("checked");
 		var unavailable = dijit.byId("ddUnavailable2").get("checked");
 		DataUpdater.addOrUpdateSchedule("<%=myUsername%>", id, year, month, day, locID, notes, pieces, time,
@@ -122,6 +131,7 @@
 					reloadMyPreviousSchedule();
 					reloadCalendar();
 				}});
+		});
 	}
 	var deleteSchedule2 = function(id) {
 		DataUpdater.deleteSchedule(id, {async:false, callback:function() {

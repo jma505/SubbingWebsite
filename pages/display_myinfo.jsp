@@ -21,92 +21,110 @@
 	  DataPreparer.getMyXml("<%=myUsername%>", displayMe);
   }
   var displayMe = function(xmlIn) {
-	  var xslt = xmlParse(dojo.byId('xslme').value);
+	  require(["dojo/dom"], function(dom) {
+	  var xslt = xmlParse(dom.byId('xslme').value);
 	  var xmlt = xmlParse(xmlIn);
 	  var html = xsltProcess(xmlt, xslt);
-	  dojo.byId('me').innerHTML = html;
+	  dom.byId('me').innerHTML = html;
+	  });
   }
   var reloadEmail = function() {
 	  DataPreparer.getMyXml("<%=myUsername%>", displayMyEmail);
   }
   var displayMyEmail = function(xmlIn) {
-	  var xslt = xmlParse(dojo.byId('xslmyemail').value);
+	  require(["dojo/dom"], function(dom) {
+	  var xslt = xmlParse(dom.byId('xslmyemail').value);
 	  var xmlt = xmlParse(xmlIn);
 	  var html = xsltProcess(xmlt, xslt);
-	  dojo.byId('myemails').innerHTML = html;
+	  dom.byId('myemails').innerHTML = html;
+	  });
   }
   var reloadPhone = function() {
 	  DataPreparer.getMyXml("<%=myUsername%>", displayMyPhone);
   }
   var displayMyPhone = function(xmlIn) {
-	  var xslt = xmlParse(dojo.byId('xslmyphones').value);
+	  require(["dojo/dom"], function(dom) {
+	  var xslt = xmlParse(dom.byId('xslmyphones').value);
 	  var xmlt = xmlParse(xmlIn);
 	  var html = xsltProcess(xmlt, xslt);
-	  dojo.byId('myphones').innerHTML = html;
+	  dom.byId('myphones').innerHTML = html;
+	  });
   }
   var deleteEmail = function(id) {
 	  DataUpdater.deleteEmail(id, reloadEmail);
   }
   var moveEmailToRight = function(em, pr, id) {
-	  dojo.byId('emailID').innerHTML = id;
-	  dojo.byId('emailAddress').value = em;
+	  require(["dojo/dom"], function(dom) {
+	  dom.byId('emailID').innerHTML = id;
+	  dom.byId('emailAddress').value = em;
 	  dijit.byId('emailPreferred').set("value", pr);
+	  });
   }
   var clearEmailAddUpdate = function() {
-	  dojo.byId('emailID').innerHTML = "";
-	  dojo.byId('emailAddress').value = "";
+	  require(["dojo/dom"], function(dom) {
+	  dom.byId('emailID').innerHTML = "";
+	  dom.byId('emailAddress').value = "";
 	  dijit.byId('emailPreferred').set("value", false);
+	  });
   }
   var addUpdateEmail = function() {
-	  var emId = dojo.byId('emailID').innerHTML;
+	  require(["dojo/dom"], function(dom) {
+	  var emId = dom.byId('emailID').innerHTML;
 	  if (emId == "") {
 		  emId = 0;
 	  }
-	  var emAddr = dojo.byId('emailAddress').value;
+	  var emAddr = dom.byId('emailAddress').value;
 	  var emPref = dijit.byId('emailPreferred').get("value");
 	  if (emPref != false) {
 		  emPref = true;
 	  }
 	  DataUpdater.addOrUpdateEmail2("<%=myUsername%>", emId, emAddr, emPref, reloadEmail);
 	  clearEmailAddUpdate();
+	  });
   }
   var deletePhone = function(id) {
 	  DataUpdater.deletePhone(id, reloadPhone);
   }
   var movePhoneToRight = function(ac, pp, pe, pt, id) {
-	  dojo.byId('phoneID').innerHTML = id;
-	  dojo.byId('phoneAC').value = ac;
-	  dojo.byId('phonePP').value = pp;
-	  dojo.byId('phonePE').value = pe;
-	  dojo.byId('phonePT').value = pt;
+	  require(["dojo/dom"], function(dom) {
+	  dom.byId('phoneID').innerHTML = id;
+	  dom.byId('phoneAC').value = ac;
+	  dom.byId('phonePP').value = pp;
+	  dom.byId('phonePE').value = pe;
+	  dom.byId('phonePT').value = pt;
+	  });
   }
   var clearPhoneAddUpdate = function() {
-	  dojo.byId('phoneID').innerHTML = "";
-	  dojo.byId('phoneAC').value = "";
-	  dojo.byId('phonePP').value = "";
-	  dojo.byId('phonePE').value = "";
-	  dojo.byId('phonePT').value = "";
+	  require(["dojo/dom"], function(dom) {
+	  dom.byId('phoneID').innerHTML = "";
+	  dom.byId('phoneAC').value = "";
+	  dom.byId('phonePP').value = "";
+	  dom.byId('phonePE').value = "";
+	  dom.byId('phonePT').value = "";
+	  });
   }
   var addUpdatePhone = function() {
-	  var phId = dojo.byId('phoneID').innerHTML;
+	  require(["dojo/dom"], function(dom) {
+	  var phId = dom.byId('phoneID').innerHTML;
 	  if (phId == "") {
 		  phId = 0;
 	  }
-	  var phAc = dojo.byId('phoneAC').value;
+	  var phAc = dom.byId('phoneAC').value;
 	  if (phAc == "") {
 		  phAc = 0;
 	  }
-	  var phPp = dojo.byId('phonePP').value;
+	  var phPp = dom.byId('phonePP').value;
 	  if (phPp == "") {
 		  phPp = 0;
 	  }
-	  var phPe = dojo.byId('phonePE').value;
+	  var phPe = dom.byId('phonePE').value;
 	  if (phPe == "") {
 		  phPe = 0;
 	  }
-	  var phPt = dojo.byId('phonePT').value;
+	  var phPt = dom.byId('phonePT').value;
 	  DataUpdater.addOrUpdatePhone2("<%=myUsername%>", phId, phAc, phPp, phPe, phPt, reloadPhone);
 	  clearPhoneAddUpdate();
+	  });
   }
   </script>
   
@@ -353,16 +371,17 @@ To <b>DELETE</b> a Phone Number, click the <img src="images/delete_sm.png"/> on 
 </div>
 <script type="text/javascript">
     var initBasicInfo = function() {
+    	require(["dojo/dom"], function(dom) {
 		var myUsername = "<%=myUsername%>";
 		var mfn, details, travel, wedfun, asat, asun, asic, aau;
 		DataPreparer.getMyName(myUsername, { async:false, callback:function(str) {mfn = str;}});
-		dojo.byId("fullname").value = mfn;
+		dom.byId("fullname").value = mfn;
 		DataPreparer.getMyDetails(myUsername, { async:false, callback:function(str) {details = str;}});
-		dojo.byId("info").value = details;
+		dom.byId("info").value = details;
 		DataPreparer.getMyTravel(myUsername, { async:false, callback:function(str) {travel = str;}});
-		dojo.byId("travel").value = travel;
+		dom.byId("travel").value = travel;
 		DataPreparer.getMyWedFun(myUsername, { async:false, callback:function(str) {wedfun = str;}});
-		dojo.byId("wedfun").value = wedfun;
+		dom.byId("wedfun").value = wedfun;
 		DataPreparer.getMyAvailSat(myUsername, { async:false, callback:function(str) {asat = str;}});
 		var asatbool = true;
 		if (asat == "false") {
@@ -387,6 +406,7 @@ To <b>DELETE</b> a Phone Number, click the <img src="images/delete_sm.png"/> on 
 			aaubool = false;
 		}
 		dijit.byId("activeuser").set("checked", aaubool);
+    	});
 	}
 	var showBasicInfo = function() {
 		initBasicInfo();
@@ -402,33 +422,38 @@ To <b>DELETE</b> a Phone Number, click the <img src="images/delete_sm.png"/> on 
 	    dijit.byId("formChangePwd").show();
 	}
 	var validateNewPwd = function() {
+		require(["dojo/dom"], function(dom) {
 	  var badpwd = "<font color=red><em>New Passwords do not Match</em></font>";
-	  var pass1 = dojo.byId("newpwd");
-	  var pass2 = dojo.byId("newpwd2");
-	  var message = dojo.byId("newpwdmsg");
+	  var pass1 = dom.byId("newpwd");
+	  var pass2 = dom.byId("newpwd2");
+	  var message = dom.byId("newpwdmsg");
 	  if (pass1.value != pass2.value) { message.innerHTML = badpwd; }
 	  else { message.innerHTML = ""; }
+		});
 	}
 	var submitPassword = function() {
+		require(["dojo/dom"], function(dom) {
 	<%String username = ((Users) request.getSession()
 					.getAttribute("user")).getUsername();%>
 	  var username = "<%=username%>";
-	  var oldpwd = dojo.byId("oldpwd").value;
-	  var newpwd1 = dojo.byId("newpwd").value;
-	  var newpwd2 = dojo.byId("newpwd2").value;
+	  var oldpwd = dom.byId("oldpwd").value;
+	  var newpwd1 = dom.byId("newpwd").value;
+	  var newpwd2 = dom.byId("newpwd2").value;
 	  DataUpdater.updatePassword2(username, oldpwd, newpwd1, { callback:function(str) { alert(str);}});
-	  dojo.byId("oldpwd").value = "";
-	  dojo.byId("newpwd").value = "";
-	  dojo.byId("newpwd2").value = "";
+	  dom.byId("oldpwd").value = "";
+	  dom.byId("newpwd").value = "";
+	  dom.byId("newpwd2").value = "";
+		});
 	}
 	var submitBasicInfo = function() {
+		require(["dojo/dom"], function(dom) {
 		<%username = ((Users) request.getSession().getAttribute("user"))
 					.getUsername();%>
 		var username = "<%=username%>";
-		var fullname = dojo.byId("fullname").value;
-		var info = dojo.byId("info").value;
-		var travel = dojo.byId("travel").value;
-		var wedfun = dojo.byId("wedfun").value;
+		var fullname = dom.byId("fullname").value;
+		var info = dom.byId("info").value;
+		var travel = dom.byId("travel").value;
+		var wedfun = dom.byId("wedfun").value;
 		var asat = dijit.byId("availsat").get("checked");
 		var asun = dijit.byId("availsun").get("checked");
 		var showincal = dijit.byId("showincal").get("checked");
@@ -444,6 +469,7 @@ To <b>DELETE</b> a Phone Number, click the <img src="images/delete_sm.png"/> on 
 						checkCalendar2();
 					}
 				});
+		});
 	}
 </script>
 

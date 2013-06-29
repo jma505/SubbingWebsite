@@ -7,7 +7,9 @@
 <script type="text/javascript">
 	function reloadHolidays() {
 		DataPreparer.getHolidaysListDisplay({async:false, callback:function(str) {
-			dojo.byId("allHolidays").innerHTML = str;
+			require(["dojo/dom"], function(dom) {
+			dom.byId("allHolidays").innerHTML = str;
+			});
 		}});
 	}
 	var submitHoliday = function() {

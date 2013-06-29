@@ -20,11 +20,13 @@ dates.
 	</textarea>
 	<script type="text/javascript">
 	function transformCalendar(xmlin) {
-		var xslCalendar = dojo.byId('xslcal').value;
+		require(["dojo/dom"], function(dom) {
+		var xslCalendar = dom.byId('xslcal').value;
 		var xslt = xmlParse(xslCalendar);
 		  var xmlt = xmlParse(xmlin);
 		  var html = xsltProcess(xmlt, xslt);
-		  dojo.byId('cal').innerHTML = html;
+		  dom.byId('cal').innerHTML = html;
+		});
 	}
 	function reloadCalendar() {
 		DataPreparer.getAvailabilityAsXML(transformCalendar);

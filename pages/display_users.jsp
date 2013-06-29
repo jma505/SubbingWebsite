@@ -15,29 +15,36 @@
 	  DataPreparer.getAllUsersAsXML(displayUsers);
 	}
 	var displayUsers = function(xmlIn) {
-		var xslt = xmlParse(dojo.byId('xslusers').value);
+		require(["dojo/dom"], function(dom) {
+		var xslt = xmlParse(dom.byId('xslusers').value);
 		var xmlt = xmlParse(xmlIn);
 		var html = xsltProcess(xmlt, xslt);
-		dojo.byId('allUsers').innerHTML = html;
+		dom.byId('allUsers').innerHTML = html;
+		});
 	}
 	var moveUserToRight = function(username, usershortname, userfullname, comments) {
-		dojo.byId('userName').value = username;
-		dojo.byId('userShortname').value = usershortname;
-		dojo.byId('userFullname').value = userfullname;
-		dojo.byId('userComments').value = comments;
+		require(["dojo/dom"], function(dom) {
+		dom.byId('userName').value = username;
+		dom.byId('userShortname').value = usershortname;
+		dom.byId('userFullname').value = userfullname;
+		dom.byId('userComments').value = comments;
 		dijit.byId("formChangeUser").show();
+		});
 	}
 	var clearUserForm = function() {
-		dojo.byId('userName').value = "";
-		dojo.byId('userShortname').value = "";
-		dojo.byId('userFullname').value = "";
-		dojo.byId('userComments').value = "";
+		require(["dojo/dom"], function(dom) {
+		dom.byId('userName').value = "";
+		dom.byId('userShortname').value = "";
+		dom.byId('userFullname').value = "";
+		dom.byId('userComments').value = "";
+		});
 	}
 	var submitUser = function() {
-		var username = dojo.byId('userName').value;
-		var usershortname = dojo.byId('userShortname').value;
-		var userfullname = dojo.byId('userFullname').value;
-		var usercomments = dojo.byId('userComments').value;
+		require(["dojo/dom"], function(dom) {
+		var username = dom.byId('userName').value;
+		var usershortname = dom.byId('userShortname').value;
+		var userfullname = dom.byId('userFullname').value;
+		var usercomments = dom.byId('userComments').value;
 		DataUpdater.addOrUpdateUser(username, usershortname, userfullname, usercomments, {
 					async : false,
 					callback : function(str) {
@@ -45,6 +52,7 @@
 					}
 				});
 		clearUserForm();
+		});
 	}
 	var deleteUser = function(username) {
 		DataUpdater.deleteUser(username, {async:false, callback:function() {reloadUsers();}});

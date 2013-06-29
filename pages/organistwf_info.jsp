@@ -49,5 +49,7 @@
 </td></tr></table>
 
 <script type="text/javascript">
-dojo.byId('organist').value = "";
+require(["dojo/dom"], function(dom) {
+  dom.byId('organist').value = "";
+});
 </script>
