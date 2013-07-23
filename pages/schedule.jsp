@@ -16,9 +16,18 @@ dates.
 	Contact information is available on the <i>"Organists Information"</i> tab.
 
 	<textarea id="xslcal" style="display: none;">
-	<c:import url="/XML/schedule2.xsl" />
+	<c:import url="/XML/schedule2.dojo190.xsl" />
 	</textarea>
 	<script type="text/javascript">
+	require(["dijit/Tooltip", "dojo/query!css2", "dojo/domReady!"], function(Tooltip){
+	    new Tooltip({
+	        connectId: "cal",
+	        selector: "span",
+	        getContent: function(matchedNode){
+	            return matchedNode.getAttribute("tooltiptext");
+	        }
+	    });
+	});
 	function transformCalendar(xmlin) {
 		require(["dojo/dom"], function(dom) {
 		var xslCalendar = dom.byId('xslcal').value;

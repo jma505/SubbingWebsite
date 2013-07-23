@@ -77,7 +77,7 @@
     </div>
     <div data-dojo-type="dijit.layout.ContentPane" href="pages/checklist.jsp" title="Checklist" style="overflow:auto">
     </div>
-    <div data-dojo-type="dijit.layout.ContentPane" href="pages/news.jsp" title="News (10/3/2012)"
+    <div data-dojo-type="dijit.layout.ContentPane" href="pages/news.jsp" title="News (7/10/2013)"
        style="overflow:auto">
     </div>
     <logic:present name="user">

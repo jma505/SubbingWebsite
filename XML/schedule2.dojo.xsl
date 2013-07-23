@@ -3,7 +3,7 @@
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 	<xsl:template match="/">
-		<table align="center" border="0" cellspacing="10"
+		<table id="public_schedule" align="center" border="0" cellspacing="10"
 			cellpadding="5">
 			<xsl:apply-templates select="months/month" />
 		</table>

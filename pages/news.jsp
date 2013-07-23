@@ -1,4 +1,12 @@
 <p>
+<b>7/10/2013 - Today&#39;s Update</b>
+<br />
+<ul>
+<li>The look of the available names you see when hovering your mouse over a date on the Calendar tab is improved, 
+and now matches the look of the rest of the site.</li>
+</ul>
+</p>
+<p>
 <b>10/3/2012 - Thanksgiving Eve & Day added</b>
 <br />
 <ul>
