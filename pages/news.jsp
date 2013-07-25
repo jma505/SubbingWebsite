@@ -1,4 +1,12 @@
 <p>
+<b>7/24/2013 - Today&#39;s Update (v2.1.1)</b>
+<br />
+<ul>
+<li>The background color is changed to something I think is more subtle and restful</li>
+<li>The version number has been added to each page (under the &quot;Email the Webmaster&quot; link)</li>
+</ul>
+</p>
+<p>
 <b>7/10/2013 - Today&#39;s Update</b>
 <br />
 <ul>

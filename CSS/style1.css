@@ -1,5 +1,5 @@
 body {
-  background: #f0f5f9;
+  background: #f4f4f4;
   color:black; 
   margin: 0;
   padding: 8.9em 1em 1em 1em;
@@ -37,16 +37,16 @@ div.table {
   color: Black;
 }
 A:link {
-  color: #10117c;
+  color: Black;
 }
 A:visited {
-  color: #10117c;
+  color: #Black;
 }
 A:hover {
-  color: #cc3333;
+  color: #82accd;
 }
 A:active {
-  color: #cc3333;
+  color: #82accd;
 }
 em {
   font-style: italic;
