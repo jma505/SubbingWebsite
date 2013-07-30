@@ -1,6 +1,8 @@
 <p>
 <b>Welcome to the Pioneer Valley Substitute Organists Website!</b><br>
 <br>
+<i>If you are an organist who would like to be listed on this site, please email <em>bassooner@gmail.com</em> and
+request to be added. You will receive an email back with your username and password and information to get you started.</i><p>
 This website allows substitute organists to maintain their schedules online, and you, the representative of a church, reap the benefit of being 
 able to check the availability of several potential substitutes at once.  The substitutes choose whether they want to
 be available on Saturdays only, Sundays only, or both (more on that later).<p>
