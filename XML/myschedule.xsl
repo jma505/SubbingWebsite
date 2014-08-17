@@ -36,6 +36,9 @@
 	<xsl:template match="weekend">
 		<xsl:param name="monthName"/>
 		<xsl:param name="rows"/>
+		<xsl:variable name="hl">
+			<xsl:value-of select="@highlight"/>
+		</xsl:variable>
 		<xsl:variable name="firstWeekend">
 			<xsl:choose>
 				<xsl:when test="position() = 1">1</xsl:when>
@@ -43,7 +46,12 @@
 			</xsl:choose>
 		</xsl:variable>
 		<xsl:for-each select="*">
-			<tr>
+			<xsl:element name="tr">
+				<xsl:if test="$hl = 'yes'">
+					<xsl:attribute name="bgcolor">
+						#e7edf5
+					</xsl:attribute>
+				</xsl:if>
 				<xsl:if test="$firstWeekend = 1">
 					<xsl:if test="position() = 1">
 						<th align="right" valign="top">
@@ -186,7 +194,7 @@
 						<xsl:value-of select="holidayName" />
 					</font></td>
 				</xsl:if>
-			</tr>
+			</xsl:element>
 		</xsl:for-each>
 	</xsl:template>
 </xsl:stylesheet>

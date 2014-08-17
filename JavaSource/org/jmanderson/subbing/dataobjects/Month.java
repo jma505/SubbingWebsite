@@ -1,12 +1,14 @@
 package org.jmanderson.subbing.dataobjects;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.jmanderson.subbing.DateHelper;
 import org.jmanderson.subbing.HtmlHelper;
 import org.jmanderson.subbing.SubbingException;
 import org.jmanderson.subbing.hibernate.Location;
@@ -321,7 +323,7 @@ public class Month {
 		}
 	}
 
-	public String getXml(boolean ascending, boolean saturdays, boolean sundays) {
+	public String getXml(boolean ascending, boolean saturdays, boolean sundays, boolean highlightThisWeekend) {
 		StringBuffer sb = new StringBuffer();
 		List dayList = new ArrayList();
 
@@ -341,12 +343,11 @@ public class Month {
 			Collections.sort(dayList, Collections.reverseOrder());
 		}
 
-		sb.append("<weekend>");
-
 		DayKey dkey = null;
 		boolean inGroup = true;
 		int previousSunday = 0;
 		int previousSaturday = 0;
+		boolean highlighted = false;
 		for (int i = 0; i < dayList.size(); i++) {
 			// special case where Sundays are not listed, and the first of the
 			// month is a Sunday
@@ -358,11 +359,26 @@ public class Month {
 						i = 1;
 					}
 				}
+				if (highlightThisWeekend && !highlighted && highlight(((DayKey) dayList.get(i)).getDay())) {
+//					System.out.println("HIGHLIGHTING WEEKEND " + getMonth() + " " + ((DayKey) dayList.get(i)).getDay());
+					highlighted = true;
+					sb.append("<weekend highlight=\"yes\">");
+				}
+				else {
+					sb.append("<weekend highlight=\"no\">");
+				}
 			}
 
 			// End of grouping ... reset tags
 			if (!inGroup) {
-				sb.append("</weekend><weekend>");
+				if (highlightThisWeekend && !highlighted && highlight(((DayKey) dayList.get(i)).getDay())) {
+//					System.out.println("HIGHLIGHTING WEEKEND " + getMonth() + " " + ((DayKey) dayList.get(i)).getDay());
+					highlighted = true;
+					sb.append("</weekend><weekend highlight=\"yes\">");
+				}
+				else {
+					sb.append("</weekend><weekend highlight=\"no\">");
+				}
 				inGroup = true;
 			}
 
@@ -382,7 +398,10 @@ public class Month {
 							appendXml(sb, null, null, false, false, null);
 						}
 					} else {
-						if (d2.isHoliday() && (d2.getDay() != previousSaturday)) {
+						if (d2.isHoliday() && (d2.getDay() == previousSaturday)) {
+//							inGroup = false;
+							;
+						} else if (!sundays) {
 							inGroup = false;
 						}
 					}
@@ -421,7 +440,7 @@ public class Month {
 		}
 
 		sb.append("</weekend></month>");
-
+//System.out.println(sb.toString());
 		return sb.toString();
 	}
 
@@ -509,5 +528,39 @@ public class Month {
 
 	public String toString() {
 		return month + ", " + year;
+	}
+	
+	/*
+	 * This method determines if the weekend being generated in getXML() should be highlighted because
+	 * it is either the current or upcoming weekend.
+	 * 
+	 * NOTE that "i" always comes in as a Saturday.
+	 */
+	private boolean highlight(int i) {
+		Calendar cal = Calendar.getInstance();
+//		String todayMonth = ((String) DateHelper.getMonthName(cal.get(Calendar.MONTH)));
+//		int todayYear = cal.get(Calendar.YEAR);
+//		int todayDay = cal.get(Calendar.DAY_OF_MONTH);
+//		if (todayMonth.equals(this.month)) {
+//			if (todayYear == this.year) {
+//				// this Month object represents the current month
+//				System.out.println("TODAY is " + todayDay + " " + todayMonth + " " + todayYear);
+//				System.out.println("CHECKING against " + i + " " + this.month + " " + this.year);
+//				if (i == (todayDay - 1)) { // Special case where today is a Sunday
+//					return true;
+//				}
+//				if ((i >= todayDay) && (i - todayDay <= 6)) {
+//					return true;
+//				}
+//			}
+//		}
+		Calendar cal2 = Calendar.getInstance();
+		cal2.set(this.year, DateHelper.extractMonthFromDisplay(this.month), i);
+		long diffTime = cal2.getTimeInMillis() - cal.getTimeInMillis();
+		long diffDays = diffTime / (1000 * 60 * 60 * 24);
+		if (diffDays >= -1 && diffDays <= 6) {
+			return true;
+		}
+		return false;
 	}
 }

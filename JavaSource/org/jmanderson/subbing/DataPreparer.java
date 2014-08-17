@@ -55,7 +55,7 @@ public class DataPreparer {
 	 */
 	public static String getAvailabilityAsXML() {
 		SubDates subDates = getSubDates();
-		String xml = subDates.getXml(true, true, true);
+		String xml = subDates.getXml(true, true, true, false);
 
 		return xml;
 	}
@@ -455,8 +455,9 @@ public class DataPreparer {
 		}
 
 		Organists org = getOrganist(username);
+		boolean highlightThisWeekend = (previous ? false : true);
 		String xml = subDates.getXml(true, org.getAvailsat().booleanValue(),
-				org.getAvailsun().booleanValue());
+				org.getAvailsun().booleanValue(), highlightThisWeekend);
 
 		return xml;
 	}
@@ -676,7 +677,7 @@ public class DataPreparer {
 			SessionFactory.closeSession();
 		}
 
-		return subDates.getXml(false, true, true);
+		return subDates.getXml(false, true, true, false);
 	}
 
 	public static String getMyPiecesAsXml(String username) throws Exception {
@@ -709,7 +710,7 @@ public class DataPreparer {
 			SessionFactory.closeSession();
 		}
 
-		return subDates.getXml(false, true, true);
+		return subDates.getXml(false, true, true, false);
 	}
 
 	/**

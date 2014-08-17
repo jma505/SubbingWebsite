@@ -1,4 +1,11 @@
 <p>
+<b>8/17/2014 - v2.2.0 released</b>
+<br />
+<ul>
+<li>Added a subtle highlighting of the current or next weekend (depending on the date and your settings for Saturday and/or Sunday visibility)</li>
+</ul>
+</p>
+<p>
 <b>6/29/2013 - V2.0.4 released</b>
 <br />
 <ul>

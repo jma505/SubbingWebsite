@@ -63,7 +63,7 @@ public class SubDates {
 		}
 	}
 
-	public String getXml(boolean ascending, boolean saturdays, boolean sundays) {
+	public String getXml(boolean ascending, boolean saturdays, boolean sundays, boolean highlightThisWeekend) {
 		StringBuffer sb = new StringBuffer();
 
 		sb.append("<?xml version=\"1.0\"?>");
@@ -72,7 +72,7 @@ public class SubDates {
 		Iterator iter = months.iterator();
 		while (iter.hasNext()) {
 			Month month = (Month) iter.next();
-			sb.append(month.getXml(ascending, saturdays, sundays));
+			sb.append(month.getXml(ascending, saturdays, sundays, highlightThisWeekend));
 		}
 
 		sb.append("</months>");
