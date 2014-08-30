@@ -1,4 +1,11 @@
 <p>
+<b>8/30/2014 - v2.3.0 released</b>
+<br />
+<ul>
+<li>Updated to version 1.10.0 of the Dojo JavaScript Toolkit code.
+</ul>
+</p>
+<p>
 <b>8/17/2014 - v2.2.0 released</b>
 <br />
 <ul>
