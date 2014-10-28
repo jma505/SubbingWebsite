@@ -347,7 +347,6 @@ public class Month {
 		boolean inGroup = true;
 		int previousSunday = 0;
 		int previousSaturday = 0;
-		boolean highlighted = false;
 		for (int i = 0; i < dayList.size(); i++) {
 			// special case where Sundays are not listed, and the first of the
 			// month is a Sunday
@@ -359,9 +358,9 @@ public class Month {
 						i = 1;
 					}
 				}
-				if (highlightThisWeekend && !highlighted && highlight(((DayKey) dayList.get(i)).getDay())) {
+				if (highlightThisWeekend && !SubDates.getHighlighted() && highlight(((DayKey) dayList.get(i)).getDay())) {
 //					System.out.println("HIGHLIGHTING WEEKEND " + getMonth() + " " + ((DayKey) dayList.get(i)).getDay());
-					highlighted = true;
+					SubDates.setHighlighted();
 					sb.append("<weekend highlight=\"yes\">");
 				}
 				else {
@@ -371,9 +370,9 @@ public class Month {
 
 			// End of grouping ... reset tags
 			if (!inGroup) {
-				if (highlightThisWeekend && !highlighted && highlight(((DayKey) dayList.get(i)).getDay())) {
+				if (highlightThisWeekend && !SubDates.getHighlighted() && highlight(((DayKey) dayList.get(i)).getDay())) {
 //					System.out.println("HIGHLIGHTING WEEKEND " + getMonth() + " " + ((DayKey) dayList.get(i)).getDay());
-					highlighted = true;
+					SubDates.setHighlighted();
 					sb.append("</weekend><weekend highlight=\"yes\">");
 				}
 				else {

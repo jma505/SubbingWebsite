@@ -39,6 +39,7 @@ public class DisplayHomeAction extends org.apache.struts.action.Action {
 //		}
 //		String availability = DataPreparer.getAvailabilityAsXML();
 //		request.setAttribute("availability", availability);
+		System.out.println("DisplayHomeAction: linking to basepage.jsp");
 		return mapping.findForward(FORWARD_success);
 	}
 

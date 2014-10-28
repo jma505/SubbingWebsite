@@ -47,5 +47,32 @@ public class EncodeDecode {
 			return s;
 		}
 	}
-
+	
+	/*
+	 * This method is called when returning XML for the Schedules displays because I can't
+	 * seem to get the Schedules object to call encode() and decode() for the service_time
+	 * property.
+	 */
+	public static String removeAmpersands(String s) {
+		if (s != null) {
+			if (s.indexOf('&') > -1) {
+				StringBuffer sb = new StringBuffer();
+				char[] characters = s.toCharArray();
+				int len = characters.length;
+				for (int i = 0; i < len; i++) {
+					switch (characters[i]) {
+					case '&':
+						sb.append("and");
+						break;
+					default:
+						sb.append(characters[i]);
+						break;
+					}
+				}
+				return sb.toString();
+			}
+		} 
+		return s;
 	}
+
+}

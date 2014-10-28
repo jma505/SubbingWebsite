@@ -1,8 +1,17 @@
 <p>
-<b>8/30/2014 - v2.3.0 released</b>
+<b>10/27/2014 - v2.2.2 released</b>
 <br />
 <ul>
-<li>Updated to version 1.10.0 of the Dojo JavaScript Toolkit code.
+<li>Fixed a bug which caused a user to get a blank screen when logging in after putting an ampersand into a Time
+field for a scheduled date.</li>
+</ul>
+</p>
+<p>
+<b>9/28/2014 - v2.2.1 released</b>
+<br />
+<ul>
+<li>Fixed a bug which caused both the last week of a month and the first week of the following month to be
+highlighted as the current/upcoming week.</li>
 </ul>
 </p>
 <p>

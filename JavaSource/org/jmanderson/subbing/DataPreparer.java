@@ -459,7 +459,7 @@ public class DataPreparer {
 		String xml = subDates.getXml(true, org.getAvailsat().booleanValue(),
 				org.getAvailsun().booleanValue(), highlightThisWeekend);
 
-		return xml;
+		return EncodeDecode.removeAmpersands(xml);
 	}
 
 	/**

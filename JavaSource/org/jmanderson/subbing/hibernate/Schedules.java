@@ -45,12 +45,14 @@ public class Schedules
 		
 		setNotes(EncodeDecode.decode(getNotes()));
 		setPlayed(EncodeDecode.decode(getPlayed()));
+		setService_time(EncodeDecode.decode(getService_time()));
 	}
 
 	public boolean onSave(Session arg0) throws CallbackException {
 		
 		setNotes(EncodeDecode.encode(getNotes()));
 		setPlayed(EncodeDecode.encode(getPlayed()));
+		setService_time(EncodeDecode.encode(getService_time()));
 		
 		return Lifecycle.NO_VETO;
 	}

@@ -15,6 +15,7 @@ import org.jmanderson.subbing.hibernate.Schedules;
 public class SubDates {
 
 	private List months;
+	private static boolean highlighted;
 
 	public SubDates() {
 		months = new SubbingArrayList();
@@ -65,6 +66,7 @@ public class SubDates {
 
 	public String getXml(boolean ascending, boolean saturdays, boolean sundays, boolean highlightThisWeekend) {
 		StringBuffer sb = new StringBuffer();
+		highlighted = false;
 
 		sb.append("<?xml version=\"1.0\"?>");
 		sb.append("<months>");
@@ -80,4 +82,11 @@ public class SubDates {
 		return sb.toString();
 	}
 
+	public static void setHighlighted() {
+		highlighted = true;
+	}
+	
+	public static boolean getHighlighted() {
+		return highlighted;
+	}
 }
