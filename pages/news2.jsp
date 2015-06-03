@@ -1,4 +1,12 @@
 <p>
+<b>6/2/2015 - v2.2.3 released</b>
+<br />
+<ul>
+<li>Updated to version 1.10.4 of the Dojo JavaScript Toolkit code to eliminate a bug causing issues for users
+with recent versions of Mozilla browsers on Windows.</li>
+</ul>
+</p>
+<p>
 <b>10/27/2014 - v2.2.2 released</b>
 <br />
 <ul>

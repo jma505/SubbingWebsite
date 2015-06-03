@@ -10,7 +10,7 @@
   <form action="servlet/LogoutServlet" method="get">
     <button type="submit" data-dojo-type="dijit.form.Button">Click to Log Off</button>
   </form>
-  </td><td><a href="mailto:bassooner@gmail.com">Email the Webmaster</a><br><font color="#82accd" size="-3">v2.2.2</font></td></tr>
+  </td><td><a href="mailto:bassooner@gmail.com">Email the Webmaster</a><br><font color="#82accd" size="-3">v2.2.3</font></td></tr>
 </logic:present>
 <logic:notPresent name="user">
   <tr>
@@ -37,7 +37,7 @@
         </tr>
         </table>
         </div>
-    </td><td><a href="mailto:bassooner@gmail.com">Email the Webmaster</a><br><font color="82accd" size="-3">v2.2.2</font></td>
+    </td><td><a href="mailto:bassooner@gmail.com">Email the Webmaster</a><br><font color="82accd" size="-3">v2.2.3</font></td>
   </tr>
 </logic:notPresent>
 </table>

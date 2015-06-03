@@ -8,7 +8,7 @@
 
 <title>Pioneer Valley Substitute Organists</title>
 
-<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/dojo/1.9.0/dijit/themes/claro/claro.css">
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/dojo/1.10.4/dijit/themes/claro/claro.css">
 
 <script type="text/javascript" src="/subbing/scripts/basescripts.js">
 </script>
@@ -46,7 +46,7 @@
      padding: 5px 30px 10px 5px;
   }
 </style>
-<script src="http://ajax.googleapis.com/ajax/libs/dojo/1.9.0/dojo/dojo.js"
+<script src="http://ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js"
                data-dojo-config="async: true, parseOnLoad: true"></script>
 <script type="text/javascript">
   require(["dojo/parser","dijit/layout/TabContainer","dijit/layout/ContentPane","dijit/form/Form","dojo/_base/fx",
@@ -109,7 +109,7 @@
       <div data-dojo-type="dijit.layout.ContentPane" title="[Terms of Use]" href="pages/help/termsofuse.jsp">
       <c:import url="help/termsofuse.jsp" />
       </div>
-      <div data-dojo-type="dijit.layout.ContentPane" href="pages/news2.jsp" title="[News (10/27/2014)]"
+      <div data-dojo-type="dijit.layout.ContentPane" href="pages/news2.jsp" title="[News (6/2/2015)]"
        style="overflow:auto">
     </div>
     <logic:match value="jma" name="user" property="username">
