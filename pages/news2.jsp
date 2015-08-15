@@ -1,4 +1,11 @@
 <p>
+<b>8/14/2015 - v2.2.4 released</b>
+<br />
+<ul>
+<li>Minor code changes to accommodate the upgrade to Java 1.7 libraries. There are no functional changes in the application.</li>
+</ul>
+</p>
+<p>
 <b>6/2/2015 - v2.2.3 released</b>
 <br />
 <ul>

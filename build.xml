@@ -4,7 +4,7 @@
     <property name="webinf.dir" value="${webroot.dir}/WEB-INF"/>
     <property name="build.dir" value="build"/>
 	<property name="deploy.dir" value="/Users/johnmanderson/Desktop/Copy to AmazonEC2"/>
-	<property name="test-deploy.dir" value="/usr/local/tomcat5/webapps"/>
+	<property name="test-deploy.dir" value="/Users/johnmanderson/Desktop"/>
 
     <!-- Project settings -->
     <property name="project.distname" value="subbing"/>

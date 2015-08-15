@@ -3,7 +3,7 @@ package org.jmanderson.subbing;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 
-import sun.misc.BASE64Encoder;
+import org.apache.commons.codec.binary.Base64;
 
 public class EncodeDecode {
 
@@ -41,7 +41,7 @@ public class EncodeDecode {
 	
 	public static String passwordEncode(String s) {
 		if (s != null) {
-			return new BASE64Encoder().encode(s.getBytes());
+			return new Base64().encodeToString(s.getBytes());
 		}
 		else {
 			return s;

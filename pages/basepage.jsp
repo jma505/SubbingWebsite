@@ -109,7 +109,7 @@
       <div data-dojo-type="dijit.layout.ContentPane" title="[Terms of Use]" href="pages/help/termsofuse.jsp">
       <c:import url="help/termsofuse.jsp" />
       </div>
-      <div data-dojo-type="dijit.layout.ContentPane" href="pages/news2.jsp" title="[News (6/2/2015)]"
+      <div data-dojo-type="dijit.layout.ContentPane" href="pages/news2.jsp" title="[News (8/14/2015)]"
        style="overflow:auto">
     </div>
     <logic:match value="jma" name="user" property="username">
