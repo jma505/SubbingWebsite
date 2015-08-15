@@ -1,4 +1,4 @@
-<project name="subbing" basedir="/Users/johnmanderson/Workspaces/MyEclipse 9/subbing" default="war">
+<project name="subbing" basedir="/Users/johnmanderson/Workspaces/MyEclipse 2015/subbing" default="war">
 
     <property name="webroot.dir" value="${basedir}"/>
     <property name="webinf.dir" value="${webroot.dir}/WEB-INF"/>
@@ -23,6 +23,7 @@
         <pathelement path ="${webinf.dir}/lib/jakarta-oro.jar"/>
     	<pathelement path ="/usr/local/tomcat5/common/lib/servlet-api.jar"/>
     	<pathelement path ="${webinf.dir}/lib/hibernate3.jar"/>
+    	<pathelement path ="${webinf.dir}/lib/commons-codec-1.10.jar"/>
     	<pathelement path ="${webinf.dir}/classes"/>
         <pathelement path ="${classpath}"/>
     </path>
