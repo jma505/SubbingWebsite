@@ -91,6 +91,9 @@ do not want to share.  One possible use would be the driving time from your hous
             <p>If you have entered pieces you have played each week, clicking on this tab will bring up a list of
             everywhere you have played and the pieces you played that day, in reverse chronological order.  Only those
             scheduled dates where you have entered pieces will show in this view.</p>
+            <p>There is a Search Box at the top of the list which will search all the "Pieces Played" entries for the text
+            you enter in the box. This is a case-insensitive search, and only those rows which contain the text you enter will
+            be displayed on the page. Erasing the text you've entered in the box will restore the full listing.</p>
         </div>
         <div data-dojo-type="dijit/layout/ContentPane" title="My Info Tab">
 This tab is where you update your personal information and select whether you want to be able to available on Saturdays,

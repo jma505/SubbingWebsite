@@ -1,4 +1,11 @@
 <p>
+<b>8/15/2015 - v2.3.0 released</b>
+<br />
+<ul>
+<li>A search box has been added to the "My Pieces" tab which will locate the entered text anywhere in the "Pieces Played" column in that table.</li>
+</ul>
+</p>
+<p>
 <b>8/14/2015 - v2.2.4 released</b>
 <br />
 <ul>

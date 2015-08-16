@@ -2,7 +2,7 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 <xsl:template match="months">
-  <table align="center" border="1" cellspacing="5" cellpadding="5" frame="void" rules="rows">
+  <table align="center" border="1" cellspacing="5" cellpadding="5" frame="void" rules="rows" id="searchtable">
   <tr>
     <th width="100" align="right">Sunday</th>
     <th align="left">Pieces Played</th>

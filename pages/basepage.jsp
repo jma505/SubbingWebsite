@@ -32,6 +32,8 @@
 </script>
 <script src="/subbing/ajaxslt/xpath.js">
 </script>
+<script src="//code.jquery.com/jquery-1.11.3.min.js">
+</script>
 
 <style type="text/css">
   @import "CSS/style1.css";
@@ -109,7 +111,7 @@
       <div data-dojo-type="dijit.layout.ContentPane" title="[Terms of Use]" href="pages/help/termsofuse.jsp">
       <c:import url="help/termsofuse.jsp" />
       </div>
-      <div data-dojo-type="dijit.layout.ContentPane" href="pages/news2.jsp" title="[News (8/14/2015)]"
+      <div data-dojo-type="dijit.layout.ContentPane" href="pages/news2.jsp" title="[News (8/15/2015)]"
        style="overflow:auto">
     </div>
     <logic:match value="jma" name="user" property="username">
