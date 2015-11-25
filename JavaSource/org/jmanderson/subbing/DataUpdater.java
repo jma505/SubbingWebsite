@@ -283,6 +283,16 @@ public class DataUpdater {
 		 * Control for this alternate is through the boolean alternatePath, avoiding double condition checks
 		 * in several places.
 		 */
+		
+		/* First, check to see if this is a valid call or if it's a "Gail" call */
+		if (locationID == 0 && unavailable == false) {
+			if (id > 0) {
+				deleteSchedule(id);
+			}
+			return;
+		}
+		
+		/* Passed the "Gail" test ... OK to continue */
 		Transaction txn = null;
 		boolean alternatePath = false;
 		try {
