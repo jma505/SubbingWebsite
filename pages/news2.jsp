@@ -1,4 +1,11 @@
 <p>
+<b>11/25/2015 - v2.3.1 released</b>
+<br />
+<ul>
+<li>Code has been added to prevent a user action which can result in parts of your calendar being hidden (not deleted).</li>
+</ul>
+</p>
+<p>
 <b>8/15/2015 - v2.3.0 released</b>
 <br />
 <ul>
