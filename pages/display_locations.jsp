@@ -15,12 +15,7 @@
 	  DataPreparer.getLocationsAsXML("<%=myUsername%>", displayLocations);
 	}
 	var displayLocations = function(xmlIn) {
-		require(["dojo/dom"], function(dom) {
-		var xslt = xmlParse(dom.byId('xslloc').value);
-		var xmlt = xmlParse(xmlIn);
-		var html = xsltProcess(xmlt, xslt);
-		dom.byId('allLocations').innerHTML = html;
-		});
+		$('#allLocations').xslt(xmlIn, $('#xslloc').text());
 	}
 	var moveLocationToRight = function(id, name, address, city, state, zip, notes,
 			usernotes) {
