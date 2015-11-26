@@ -34,6 +34,7 @@
 </script>
 <script src="//code.jquery.com/jquery-1.11.3.min.js">
 </script>
+<script src="/subbing/scripts/jquery.xslt.js"></script>
 
 <style type="text/css">
   @import "CSS/style1.css";
