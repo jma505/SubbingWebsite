@@ -15,12 +15,7 @@
 	  DataPreparer.getAllUsersAsXML(displayUsers);
 	}
 	var displayUsers = function(xmlIn) {
-		require(["dojo/dom"], function(dom) {
-		var xslt = xmlParse(dom.byId('xslusers').value);
-		var xmlt = xmlParse(xmlIn);
-		var html = xsltProcess(xmlt, xslt);
-		dom.byId('allUsers').innerHTML = html;
-		});
+		$('#allUsers').xslt(xmlIn, $('#xslusers').text());
 	}
 	var moveUserToRight = function(username, usershortname, userfullname, comments) {
 		require(["dojo/dom"], function(dom) {

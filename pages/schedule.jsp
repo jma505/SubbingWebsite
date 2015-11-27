@@ -29,13 +29,7 @@ dates.
 	    });
 	});
 	function transformCalendar(xmlin) {
-		require(["dojo/dom"], function(dom) {
-		var xslCalendar = dom.byId('xslcal').value;
-		var xslt = xmlParse(xslCalendar);
-		  var xmlt = xmlParse(xmlin);
-		  var html = xsltProcess(xmlt, xslt);
-		  dom.byId('cal').innerHTML = html;
-		});
+		$('#cal').xslt(xmlin, $('#xslcal').text());
 	}
 	function reloadCalendar() {
 		DataPreparer.getAvailabilityAsXML(transformCalendar);

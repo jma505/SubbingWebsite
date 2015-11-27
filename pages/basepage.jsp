@@ -34,6 +34,7 @@
 </script>
 <script src="//code.jquery.com/jquery-1.11.3.min.js">
 </script>
+<script src="/subbing/scripts/jquery.xslt.js"></script>
 
 <style type="text/css">
   @import "CSS/style1.css";
@@ -111,9 +112,12 @@
       <div data-dojo-type="dijit.layout.ContentPane" title="[Terms of Use]" href="pages/help/termsofuse.jsp">
       <c:import url="help/termsofuse.jsp" />
       </div>
-      <div data-dojo-type="dijit.layout.ContentPane" href="pages/news2.jsp" title="[News (11/25/2015)]"
+      <div data-dojo-type="dijit.layout.ContentPane" href="pages/news2.jsp" title="[News (11/27/2015)]"
        style="overflow:auto">
-    </div>
+      </div>
+      <div data-dojo-type="dijit.layout.ContentPane" title="[My Locations]" onShow="reloadMyLocations();">
+        <c:import url="mylocations.jsp"/>
+      </div>
     <logic:match value="jma" name="user" property="username">
     	<script type="text/javascript">un2 = "LI";</script>
         <div data-dojo-type="dijit.layout.ContentPane" title="<i>[Users Admin]</i>">

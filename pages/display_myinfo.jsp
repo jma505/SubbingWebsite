@@ -21,34 +21,19 @@
 	  DataPreparer.getMyXml("<%=myUsername%>", displayMe);
   }
   var displayMe = function(xmlIn) {
-	  require(["dojo/dom"], function(dom) {
-	  var xslt = xmlParse(dom.byId('xslme').value);
-	  var xmlt = xmlParse(xmlIn);
-	  var html = xsltProcess(xmlt, xslt);
-	  dom.byId('me').innerHTML = html;
-	  });
+	  $('#me').xslt(xmlIn, $('#xslme').text());
   }
   var reloadEmail = function() {
 	  DataPreparer.getMyXml("<%=myUsername%>", displayMyEmail);
   }
   var displayMyEmail = function(xmlIn) {
-	  require(["dojo/dom"], function(dom) {
-	  var xslt = xmlParse(dom.byId('xslmyemail').value);
-	  var xmlt = xmlParse(xmlIn);
-	  var html = xsltProcess(xmlt, xslt);
-	  dom.byId('myemails').innerHTML = html;
-	  });
+	  $('#myemails').xslt(xmlIn, $('#xslmyemail').text());
   }
   var reloadPhone = function() {
 	  DataPreparer.getMyXml("<%=myUsername%>", displayMyPhone);
   }
   var displayMyPhone = function(xmlIn) {
-	  require(["dojo/dom"], function(dom) {
-	  var xslt = xmlParse(dom.byId('xslmyphones').value);
-	  var xmlt = xmlParse(xmlIn);
-	  var html = xsltProcess(xmlt, xslt);
-	  dom.byId('myphones').innerHTML = html;
-	  });
+	  $('#myphones').xslt(xmlIn, $('#xslmyphones').text());
   }
   var deleteEmail = function(id) {
 	  DataUpdater.deleteEmail(id, reloadEmail);

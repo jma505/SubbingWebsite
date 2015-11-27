@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <xsl:stylesheet version="1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
@@ -39,43 +38,43 @@
 						<xsl:value-of select="details" />
 					</xsl:attribute>
 				
-				<xsl:if test="contains('saturdaysunday', name())">
-					<xsl:if test="string(details)">
-						<font size="+1" color="green">
-							<b>
-								<i>
-									<xsl:value-of select="day" />
-								</i>
-							</b>
+					<xsl:if test="contains('saturdaysunday', name())">
+						<xsl:if test="string(details)">
+							<font size="+1" color="green">
+								<b>
+									<i>
+										<xsl:value-of select="day" />
+									</i>
+								</b>
+							</font>
+						</xsl:if>
+						<xsl:if test="not(string(details))">
+							<font color="red">
+								<xsl:value-of select="day" />
+							</font>
+						</xsl:if>
+					</xsl:if>
+					<xsl:if test="name()='holiday'">
+						<xsl:if test="string(details)">
+							<font size="+1" color="purple">
+								<b>
+									<i>
+										<xsl:value-of select="day" />
+									</i>
+								</b>
+							</font>
+						</xsl:if>
+						<xsl:if test="not(string(details))">
+							<font color="red">
+								<xsl:value-of select="day" />
+							</font>
+						</xsl:if>
+					</xsl:if>
+					<xsl:if test="not(position()=last())">
+						<font color="black" size="+1">
+							<b>-</b>
 						</font>
 					</xsl:if>
-					<xsl:if test="not(string(details))">
-						<font color="red">
-							<xsl:value-of select="day" />
-						</font>
-					</xsl:if>
-				</xsl:if>
-				<xsl:if test="name()='holiday'">
-					<xsl:if test="string(details)">
-						<font size="+1" color="purple">
-							<b>
-								<i>
-									<xsl:value-of select="day" />
-								</i>
-							</b>
-						</font>
-					</xsl:if>
-					<xsl:if test="not(string(details))">
-						<font color="red">
-							<xsl:value-of select="day" />
-						</font>
-					</xsl:if>
-				</xsl:if>
-				<xsl:if test="not(position()=last())">
-					<font color="black" size="+1">
-						<b>-</b>
-					</font>
-				</xsl:if>
 				</xsl:element>
 			</xsl:for-each>
 		</td>

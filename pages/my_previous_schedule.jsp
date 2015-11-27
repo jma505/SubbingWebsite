@@ -21,12 +21,7 @@
 	  DataPreparer.getOrganistScheduleAsXML(true, "<%=myUsername%>", displayMyPreviousSchedule);
 	}
 	var displayMyPreviousSchedule = function(xmlIn) {
-		require(["dojo/dom"], function(dom) {
-		var xslt = xmlParse(dom.byId('xslmyprevsched').value);
-		var xmlt = xmlParse(xmlIn);
-		var html = xsltProcess(xmlt, xslt);
-		dom.byId('myPreviousSchedule').innerHTML = html;
-		});
+		$('#myPreviousSchedule').xslt(xmlIn, $('#xslmyprevsched').text());
 	}
 	var checkCalendar2 = function() {
 		require(["dojo/dom"], function(dom) {
@@ -47,10 +42,7 @@
 		DataPreparer.getLocationDisplay(locID, {callback:function(str) { dom.byId('piecesLocation2').innerHTML = str;}});
 		var myUsername = "<%=myUsername%>";
 		DataPreparer.getLocationPiecesAsXml(myUsername, locID, {callback:function(xmlIn) {
-			var xslt = xmlParse(dom.byId('xsllocpieces2').value);
-			var xmlt = xmlParse(xmlIn);
-			var html = xsltProcess(xmlt, xslt);
-			dom.byId('locationPieces2').innerHTML = html;
+			$('#locationPieces2').xslt(xmlIn, $('#xsllocpieces2').text());
 		}});
 		dijit.byId("piecesPlayed2").show();
 		});

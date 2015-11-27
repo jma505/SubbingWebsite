@@ -11,6 +11,8 @@ import java.util.TreeMap;
 
 import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
+import org.hibernate.Hibernate;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.criterion.Expression;
 import org.hibernate.criterion.Order;
@@ -844,5 +846,40 @@ public class DataPreparer {
 		}
 		return sb.toString();
 		
+	}
+	
+	/*
+	 * New method added to generate CSV for the Highcharts bar chart of Locations
+	 */
+	public static String getMyLocationsAsCSV(String userid) {
+		String SQL = "select b.name, b.city, b.state, count(a.locationid) from schedules a, location b where a.locationid < 999999 and a.username='" + 
+				userid + "' and b.id = a.locationid group by b.name, b.city, b.state order by count(a.locationid) desc, b.name asc";
+		StringBuffer out = new StringBuffer();
+		try {
+			Session session = SessionFactory.currentSession();
+			SQLQuery query = session.createSQLQuery(SQL);
+			query.addScalar("name", Hibernate.STRING);
+			query.addScalar("city", Hibernate.STRING);
+			query.addScalar("state", Hibernate.STRING);
+			query.addScalar("count", Hibernate.INTEGER);
+			List results = query.list();
+			StringBuffer sb;
+			Iterator iter = results.iterator();
+			while(iter.hasNext()) {
+				Object[] objects = (Object[]) iter.next();
+				sb = new StringBuffer();
+				sb.append(EncodeDecode.decode((String) objects[0])).append(" (");
+				sb.append(EncodeDecode.decode((String) objects[1])).append(" ");
+				sb.append(objects[2]).append(")");
+				out.append(sb).append(",").append(objects[3]).append("\n");
+			}
+		}
+		catch (Exception e) {
+			System.out.println("getMyLocationsAsXML: " + e.toString());
+		}
+		finally {
+			SessionFactory.closeSession();
+		}
+		return out.toString();
 	}
 }
