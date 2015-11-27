@@ -112,7 +112,7 @@
       <div data-dojo-type="dijit.layout.ContentPane" title="[Terms of Use]" href="pages/help/termsofuse.jsp">
       <c:import url="help/termsofuse.jsp" />
       </div>
-      <div data-dojo-type="dijit.layout.ContentPane" href="pages/news2.jsp" title="[News (11/25/2015)]"
+      <div data-dojo-type="dijit.layout.ContentPane" href="pages/news2.jsp" title="[News (11/27/2015)]"
        style="overflow:auto">
       </div>
       <div data-dojo-type="dijit.layout.ContentPane" title="[My Locations]" onShow="reloadMyLocations();">

@@ -1,4 +1,13 @@
 <p>
+<b>11/27/2015 - v2.4.0 released</b>
+<br />
+<ul>
+<li>Check out the new "My Locations" tab -- it shows which Locations you've played at since you began using this site! It's purely
+for fun, but I can say that I was surprised to see where some of my churches ranked in terms of visits.</li>
+<li>I've updated the XML processing on several pages to make it more efficient and less prone to errors.</li>
+</ul>
+</p>
+<p>
 <b>11/25/2015 - v2.3.1 released</b>
 <br />
 <ul>
