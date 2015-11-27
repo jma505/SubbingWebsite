@@ -114,7 +114,10 @@
       </div>
       <div data-dojo-type="dijit.layout.ContentPane" href="pages/news2.jsp" title="[News (11/25/2015)]"
        style="overflow:auto">
-    </div>
+      </div>
+      <div data-dojo-type="dijit.layout.ContentPane" title="[My Locations]" onShow="reloadMyLocations();">
+        <c:import url="mylocations.jsp"/>
+      </div>
     <logic:match value="jma" name="user" property="username">
     	<script type="text/javascript">un2 = "LI";</script>
         <div data-dojo-type="dijit.layout.ContentPane" title="<i>[Users Admin]</i>">
