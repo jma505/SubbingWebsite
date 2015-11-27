@@ -33,6 +33,7 @@
       <include method="getScheduleID"/>
       <include method="getAllUsersAsXML"/>
       <include method="getHolidaysListDisplay"/>
+      <include method="getMyLocationsAsCSV"/>
     </create>
     <create creator="new" javascript="DataUpdater">
       <param name="class" value="org.jmanderson.subbing.DataUpdater"/>
